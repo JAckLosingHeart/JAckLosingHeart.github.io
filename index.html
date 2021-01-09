@@ -133,6 +133,136 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Security-Test-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/09/Security-Test-1/">Security Test 1</a>
+    </h1>
+  
+
+        
+        <a href="/2021/01/09/Security-Test-1/" class="archive-article-date">
+  	<time datetime="2021-01-09T14:38:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="奇安信春招笔试"><a href="#奇安信春招笔试" class="headerlink" title="奇安信春招笔试"></a>奇安信春招笔试</h2><ul>
+<li><p>msbuild不能实现端口转发</p>
+</li>
+<li><p>PHP反序列化漏洞可利用的伪协议是php://phar</p>
+</li>
+<li><p>bash，nc，icmpsh都可以反弹shell，cscript不行</p>
+</li>
+<li><p>SSRF可被攻击者用来：</p>
+<ul>
+<li>对本地进行端口扫描</li>
+<li>对内网web应用进行指纹识别</li>
+<li>利用file协议读取本地文件</li>
+</ul>
+</li>
+<li><p>Certutil，Bitadmin，Powershell都有下载文件的命令</p>
+</li>
+<li><p>关于WannaCry勒索病毒说法正确的是：</p>
+<ul>
+<li>利用MS17-010漏洞进行扫描</li>
+</ul>
+</li>
+<li><p>源于“方程式黑客组织”（貌似与NSA有关系）的工具被公开</p>
+<ul>
+<li>文件加密后会添加后缀 .WNCRYT</li>
+</ul>
+</li>
+<li><p>关闭445，139端口阻断其传播</p>
+</li>
+<li><p>读取MySQL安装路径的SQL查询语句：select @@basedir</p>
+</li>
+<li><p>Oracle默认数据库端口是1521</p>
+</li>
+<li><p>下列SQL Server系统存储过程可以被攻击者用来提权：</p>
+<ul>
+<li>xp_cmdshell</li>
+<li>sp_oacreate</li>
+<li>openrowset</li>
+</ul>
+</li>
+<li><p>benchmark也可用来进行Sql盲注：select BENCHMARK(10000,md5(‘a’));</p>
+<ul>
+<li><pre><code class="sql">select 1 and if((substr(user(),1,1)=&#39;r&#39;),BENCHMARK(10000000,md5(&#39;a&#39;)),1);</code></pre>
+</li>
+</ul>
+</li>
+<li><p>LDAP运行于389端口</p>
+</li>
+<li><p>ARP也是网络层协议</p>
+</li>
+<li><p>（这个我不太理解）隐蔽信道攻击利用的常见协议有：</p>
+<ul>
+<li>HTTP</li>
+<li>DNS</li>
+<li>ICMP</li>
+</ul>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Security Test</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/01/09/Security-Test-1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Apollo5-0-AttackAPI" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -451,6 +581,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Research</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Security Test</a>
               </li>
              
               <li class="article-tag-list-item">
