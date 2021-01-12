@@ -171,49 +171,9 @@
 </ul>
 </li>
 </ul>
-<h2 id="基于RSA-Hasnshake的HTTPS-仅仅基于自己目前的理解（理解常常没有对错，只有深浅，让自己多积累再复习即可）"><a href="#基于RSA-Hasnshake的HTTPS-仅仅基于自己目前的理解（理解常常没有对错，只有深浅，让自己多积累再复习即可）" class="headerlink" title="基于RSA Hasnshake的HTTPS-仅仅基于自己目前的理解（理解常常没有对错，只有深浅，让自己多积累再复习即可）"></a>基于RSA Hasnshake的HTTPS-仅仅基于自己目前的理解（理解常常没有对错，只有深浅，让自己多积累再复习即可）</h2><ul>
-<li><p>流程图：</p>
-<p><img src="/img/RSA-Handshake.png" alt="RSA-Handshake.png"></p>
-</li>
-<li><p>步骤解析：</p>
-<ol>
-<li><p>Client Hello</p>
-<p>客户端会将自己能支持的最高协议版本，可支持的加密算法集，还有客户端产生的随机数Random_C发送给服务端请求建立TLS连接</p>
-</li>
-<li><p>Server Hello</p>
-<p>服务端会选定一个TLS协议版本，选择RSA Handshake这样的握手方式还有相应的加密算法集（比如RSA+AES-CBC+SHA256），然后将自己持有的证书链，自己产生的服务端随机数Random_S一同发回给客户端，至此Server Hello结束</p>
-</li>
-<li><p>Client Key Exchange</p>
-<p>客户端看到服务端要使用RSA Handshake，便知道一会直接用服务端那边提供的公钥加密pre_master key发送到服务端即可，但在此之前需要对服务端进行一个authentication，而authentication的过程就是通过对证书链的验证来进行的</p>
-<p>对证书链的验证这里简单说下，就像之前用Python的X509库进行的验证那样，可以从证书链的顶端自顶向下对证书进行验证，我们本身就有一个已受信任的证书库，然后每验证成功一个就把它加到我们的信任库中，再对下一个证书进行验证，直到最后的叶子证书。在验证每个证书的过程中，除了最基本的通过证书上自带Hash的验证，还要对有效期等fields进行验证。而且对于叶子证书，还要单独对它的名字进行验证，要看看叶子证书中所有可选的名字当中有没有我们要访问网站的合法名字</p>
-<p>证书验证成功之后说明这是正确的服务端公钥，那么客户端便可以直接将pre_master key用此公钥加密发回给服务端，而客户端已经可以结合之前的Random_C，Random_S得到最终的session key</p>
-<p>change_cipher_spec告知服务端后续要用session key加密通信了，Client Finished则是第一条用session key加密的消息，这边client握手步骤完成</p>
-</li>
-<li><p>Server Key Exchange</p>
-<p>服务端接收到pre_master key之后便也可以计算出最终的session key，个人认为会顺带验证下Client Finish里面的内容，然后也发送change_cipher_spec说明后面要加密通信，最终发出服务端用session key加密的消息Server Finished，客户端验证无误后说明client，server已经建立起使用session key的对称加密通信</p>
-<h2 id="基于Diffie-Hellman-Handshake的HTTPS"><a href="#基于Diffie-Hellman-Handshake的HTTPS" class="headerlink" title="基于Diffie Hellman Handshake的HTTPS"></a>基于Diffie Hellman Handshake的HTTPS</h2></li>
-</ol>
-</li>
-<li><p>流程图：</p>
-<p><img src="/img/Diffie-Hellman-Handshake.png" alt="Diffie-Hellman-Handshake.png"></p>
-</li>
-<li><p>步骤详解：</p>
-<p>Diffie Hellman Handshake说起来会比RSA-Handshake稍微麻烦一点点</p>
-<ol>
-<li><p>Client Hello</p>
-<p>与RSA-Handshake中Client Hello相同</p>
-</li>
-<li><p>Server Hello</p>
-<p>与RSA-Handshake中不一样的是，Server选定了Diffie Hellman Handshake的握手方式以及相关加密算法集，并且发给Client的消息中会多一个部分名为Server key Exchange，这里面包括了Diffie Hellman算法的初始参数p和g，以及server计算出的g^A mod p（A为server选的一个随机值）</p>
-<p>虽然因为Diffie Hellman本身安全性原因，p，g和g^A mod p甚至都不需要加密。但是我们知道Diffie Hellman本身是没有authentication的，还是要对这些信息进行摘要然后给摘要用私钥签名，Sever会把这个摘要签名连同其它信息一起发过去，client便可以通过这个摘要签名和Server发过来的公钥证书验证是在和正确的server在做Diffie Hellman</p>
-</li>
-<li><p>Client Key Exchange</p>
-<p>之后便是Client自己选个随机值B，然后就已经可以得出pre_master key和最终的session key了，再把g^B mod p发给server让server也能得到最终的session key即可，后面的步骤和RSA-Handshake就基本一样了，在这里就不赘述了</p>
-</li>
-</ol>
-</li>
-</ul>
-
+        
+          <a class="article-more-a" href="/2021/01/12/HTTPS%E7%9A%84%E5%A4%8D%E4%B9%A0%E4%B8%8E%E5%86%8D%E7%90%86%E8%A7%A3/#more">more >></a>
+        
       
 
       
