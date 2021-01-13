@@ -6,20 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Array | JAckLosingHeart</title>
+  <title>TCP再放送 | JAckLosingHeart</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="当算法本身只能暴力算法的时候，便可以考虑从数据结构上下手提高效率，比如改用hashmap提高查询效率。 几乎任何类型的数组都可以用Arrays.sort()来直接排序，它会帮你按照你定义的大小关系从小到大重新排列这个数组。第一个参数传入你的数组，第二个参数可以直接传入一个lamda表达式（匿名内部类）：(a, b) -&gt; 你要return的东西。重要的是记住a &lt; b的时候retur">
+  <meta name="description" content="TCP三次握手和四次挥手 TCP三次握手更像是同步的，TCP四次挥手更像是异步的  TCP三次握手：  TCP四次挥手：   TCP的主要内容 端到端，一个发送者，一个接收者 可靠的，有序的字节流 流水线机制，可以多次发出多个分组，但是有滑动窗口大小限制（由拥塞和流量控制决定） 面向连接性，指的就是请求回应机制把，每发送必等ACK保证消息送达 全双工，（我猜）两边都maintain着双方的序列号">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Array">
-<meta property="og:url" content="http://example.com/2021/01/08/Array/index.html">
+<meta property="og:title" content="TCP再放送">
+<meta property="og:url" content="http://example.com/2021/01/12/TCP%E5%86%8D%E6%94%BE%E9%80%81/index.html">
 <meta property="og:site_name" content="JAckLosingHeart">
-<meta property="og:description" content="当算法本身只能暴力算法的时候，便可以考虑从数据结构上下手提高效率，比如改用hashmap提高查询效率。 几乎任何类型的数组都可以用Arrays.sort()来直接排序，它会帮你按照你定义的大小关系从小到大重新排列这个数组。第一个参数传入你的数组，第二个参数可以直接传入一个lamda表达式（匿名内部类）：(a, b) -&gt; 你要return的东西。重要的是记住a &lt; b的时候retur">
+<meta property="og:description" content="TCP三次握手和四次挥手 TCP三次握手更像是同步的，TCP四次挥手更像是异步的  TCP三次握手：  TCP四次挥手：   TCP的主要内容 端到端，一个发送者，一个接收者 可靠的，有序的字节流 流水线机制，可以多次发出多个分组，但是有滑动窗口大小限制（由拥塞和流量控制决定） 面向连接性，指的就是请求回应机制把，每发送必等ACK保证消息送达 全双工，（我猜）两边都maintain着双方的序列号">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-01-08T20:58:16.000Z">
-<meta property="article:modified_time" content="2021-01-09T15:10:32.751Z">
+<meta property="og:image" content="http://example.com/img/TCP-Start-Handshake.png">
+<meta property="og:image" content="http://example.com/img/TCP-End-Handshake.png">
+<meta property="article:published_time" content="2021-01-13T01:38:54.000Z">
+<meta property="article:modified_time" content="2021-01-13T03:21:28.855Z">
 <meta property="article:author" content="JAckLosingHeart">
-<meta property="article:tag" content="Leetcode">
+<meta property="article:tag" content="Review">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/TCP-Start-Handshake.png">
   
     <link rel="alternative" href="/atom.xml" title="JAckLosingHeart" type="application/atom+xml">
   
@@ -136,34 +139,52 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Array" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-TCP再放送" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Array
+      TCP再放送
     </h1>
   
 
         
-        <a href="/2021/01/08/Array/" class="archive-article-date">
-  	<time datetime="2021-01-08T20:58:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-08</time>
+        <a href="/2021/01/12/TCP%E5%86%8D%E6%94%BE%E9%80%81/" class="archive-article-date">
+  	<time datetime="2021-01-13T01:38:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-12</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li>当算法本身只能暴力算法的时候，便可以考虑从数据结构上下手提高效率，比如改用hashmap提高查询效率。</li>
-<li>几乎任何类型的数组都可以用Arrays.sort()来直接排序，它会帮你按照你定义的大小关系从小到大重新排列这个数组。第一个参数传入你的数组，第二个参数可以直接传入一个lamda表达式（匿名内部类）：(a, b) -&gt; 你要return的东西。重要的是记住a &lt; b的时候return一个负数，这算是默认大家遵守的规范？</li>
-<li>Arrays.asList(a, b, c)可以直接返回一个由a, b, c构成的list</li>
-<li>380 Insert Delete GetRandom O(1) 确是道好题，通过把ArrayList和Hashmap结合得到了最终解决方案。Hashmap帮助ArrayList解决了remove时搜索和移位都是O(n)的问题，而ArrayList则帮助Hashmap解决了getRandom需要index的问题</li>
-<li>Random类可以用nextInt(n)取随机数, The method call returns a pseudorandom, uniformly distributed int value between 0 (inclusive) and n (exclusive).</li>
-<li>我才知道的非常重要的一件事：list remove函数传入立即数或者int型变量，会按照传入值是index删除，传如Object的子类才会按照值删除，而且只会删除第一个出现的值</li>
-<li>map remove当然remove的是key</li>
+        <h2 id="TCP三次握手和四次挥手"><a href="#TCP三次握手和四次挥手" class="headerlink" title="TCP三次握手和四次挥手"></a>TCP三次握手和四次挥手</h2><ul>
+<li><p>TCP三次握手更像是同步的，TCP四次挥手更像是异步的</p>
+</li>
+<li><p>TCP三次握手：<br><img src="/img/TCP-Start-Handshake.png" alt="TCP-Start-Handshake.png"></p>
+</li>
+<li><p>TCP四次挥手：<br><img src="/img/TCP-End-Handshake.png" alt="TCP-End-Handshake.png"></p>
+</li>
+</ul>
+<h2 id="TCP的主要内容"><a href="#TCP的主要内容" class="headerlink" title="TCP的主要内容"></a>TCP的主要内容</h2><ul>
+<li>端到端，一个发送者，一个接收者</li>
+<li>可靠的，有序的字节流</li>
+<li>流水线机制，可以多次发出多个分组，但是有滑动窗口大小限制（由拥塞和流量控制决定）</li>
+<li>面向连接性，指的就是请求回应机制把，每发送必等ACK保证消息送达</li>
+<li>全双工，（我猜）两边都maintain着双方的序列号</li>
+<li>流量控制：保证发送者不会overwhelm接收者</li>
+<li>拥塞控制：保证发送者不会overwhelm网络</li>
+<li>接收者如何处理超序的报文的：TCP并没有正式规定，但一般来说会把超序的报文暂时存起来，等待前面缺口填好了发一个累积ACK回去</li>
+<li>单重传定时器？？</li>
+<li>TCP快速重传：一旦收到三个重复ack号，便马上重新发送这个ack号的内容</li>
+<li>TCP的拥塞避免：<ol>
+<li>慢启动算法</li>
+<li>拥塞避免算法</li>
+<li>快速重传算法</li>
+<li>快速恢复算法</li>
+</ol>
+</li>
 </ul>
 
       
@@ -199,7 +220,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Review</a>
         		</li>
       		
 		</ul>
@@ -255,7 +276,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/01/08/Array/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/01/12/TCP%E5%86%8D%E6%94%BE%E9%80%81/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -269,15 +290,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/01/08/Apollo5-0-AttackAPI/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Apollo5.0-AttackAPI
-        
-      </div>
-    </a>
   
+    <a href="/2021/01/12/HTTPS%E7%9A%84%E5%A4%8D%E4%B9%A0%E4%B8%8E%E5%86%8D%E7%90%86%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">HTTPS的复习与再理解</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
