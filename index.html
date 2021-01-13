@@ -161,26 +161,9 @@
 <li><p>TCP四次挥手：<br><img src="/img/TCP-End-Handshake.png" alt="TCP-End-Handshake.png"></p>
 </li>
 </ul>
-<h2 id="TCP的主要内容"><a href="#TCP的主要内容" class="headerlink" title="TCP的主要内容"></a>TCP的主要内容</h2><ul>
-<li>端到端，一个发送者，一个接收者</li>
-<li>可靠的，有序的字节流</li>
-<li>流水线机制，可以多次发出多个分组，但是有滑动窗口大小限制（由拥塞和流量控制决定）</li>
-<li>面向连接性，指的就是请求回应机制把，每发送必等ACK保证消息送达</li>
-<li>全双工，（我猜）两边都maintain着双方的序列号</li>
-<li>流量控制：保证发送者不会overwhelm接收者</li>
-<li>拥塞控制：保证发送者不会overwhelm网络</li>
-<li>接收者如何处理超序的报文的：TCP并没有正式规定，但一般来说会把超序的报文暂时存起来，等待前面缺口填好了发一个累积ACK回去</li>
-<li>单重传定时器？？</li>
-<li>TCP快速重传：一旦收到三个重复ack号，便马上重新发送这个ack号的内容</li>
-<li>TCP的拥塞避免：<ol>
-<li>慢启动算法</li>
-<li>拥塞避免算法</li>
-<li>快速重传算法</li>
-<li>快速恢复算法</li>
-</ol>
-</li>
-</ul>
-
+        
+          <a class="article-more-a" href="/2021/01/12/TCP%E5%86%8D%E6%94%BE%E9%80%81/#more">more >></a>
+        
       
 
       
@@ -903,15 +886,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Research</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Review</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
               </li>
              
               <li class="article-tag-list-item">
