@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Simple Split Sausages Problem | JAckLosingHeart</title>
+  <title>BurpSuite | JAckLosingHeart</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="123456789101112131415161718192021222324252627import java.util.HashMap;import java.util.Map;class Solution &amp;#123;    Map&lt;Integer, Integer&gt; map &#x3D; new HashMap&lt;&gt;();    int splitSausage(int k)">
+  <meta name="description" content="Gettin’ [CA] Certified tm我才知道不是professional连store和load记录文件都不行 可能之前都用的破解版把  BurpSuite在打开后，默认使用8080端口proxy，如果以后用firefox渗透的话，就直接从localhost:8080下载证书安装到firefox的Certificates即可  FoxyProxy是另一个好用的proxy管理插件，跟原来">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Simple Split Sausages Problem">
-<meta property="og:url" content="http://example.com/2021/01/11/Simple-Split-Sausages-Problem/index.html">
+<meta property="og:title" content="BurpSuite">
+<meta property="og:url" content="http://example.com/2021/01/15/BurpSuite/index.html">
 <meta property="og:site_name" content="JAckLosingHeart">
-<meta property="og:description" content="123456789101112131415161718192021222324252627import java.util.HashMap;import java.util.Map;class Solution &amp;#123;    Map&lt;Integer, Integer&gt; map &#x3D; new HashMap&lt;&gt;();    int splitSausage(int k)">
+<meta property="og:description" content="Gettin’ [CA] Certified tm我才知道不是professional连store和load记录文件都不行 可能之前都用的破解版把  BurpSuite在打开后，默认使用8080端口proxy，如果以后用firefox渗透的话，就直接从localhost:8080下载证书安装到firefox的Certificates即可  FoxyProxy是另一个好用的proxy管理插件，跟原来">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-01-12T00:44:53.000Z">
-<meta property="article:modified_time" content="2021-01-12T03:19:56.094Z">
+<meta property="article:published_time" content="2021-01-15T16:45:57.000Z">
+<meta property="article:modified_time" content="2021-01-16T00:30:13.328Z">
 <meta property="article:author" content="JAckLosingHeart">
-<meta property="article:tag" content="leetcode">
+<meta property="article:tag" content="TryHackMe">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="JAckLosingHeart" type="application/atom+xml">
@@ -136,30 +136,81 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Simple-Split-Sausages-Problem" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-BurpSuite" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Simple Split Sausages Problem
+      BurpSuite
     </h1>
   
 
         
-        <a href="/2021/01/11/Simple-Split-Sausages-Problem/" class="archive-article-date">
-  	<time datetime="2021-01-12T00:44:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-11</time>
+        <a href="/2021/01/15/BurpSuite/" class="archive-article-date">
+  	<time datetime="2021-01-15T16:45:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-15</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">splitSausage</span><span class="params">(<span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        map.clear();</span><br><span class="line">        <span class="keyword">return</span> dp(k);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">dp</span><span class="params">(<span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (k &lt; <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (k &lt; <span class="number">4</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (map.containsKey(k))</span><br><span class="line">            <span class="keyword">return</span> map.get(k);</span><br><span class="line">        <span class="keyword">int</span> result = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= k-<span class="number">2</span>; i++) &#123;</span><br><span class="line">            result += dp(k-i);</span><br><span class="line">        &#125;</span><br><span class="line">        map.put(k, result);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span> <span class="params">(String args[])</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="keyword">new</span> Solution().dp(<span class="number">6</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
+        <h2 id="Gettin’-CA-Certified"><a href="#Gettin’-CA-Certified" class="headerlink" title="Gettin’ [CA] Certified"></a>Gettin’ [CA] Certified</h2><ul>
+<li><p>tm我才知道不是professional连store和load记录文件都不行</p>
+<p>可能之前都用的破解版把</p>
+</li>
+<li><p>BurpSuite在打开后，默认使用8080端口proxy，如果以后用firefox渗透的话，就直接从localhost:8080下载证书安装到firefox的Certificates即可</p>
+</li>
+<li><p>FoxyProxy是另一个好用的proxy管理插件，跟原来用过的ProxySwitcher差不太多</p>
+</li>
+</ul>
+<h2 id="Overview-of-Features"><a href="#Overview-of-Features" class="headerlink" title="Overview of Features"></a>Overview of Features</h2><ul>
+<li>Now that we’ve set up Burp, let’s take a look at everything it has to offer. Web application pentesting can be a messy affair but Burp has something for every step of the way. </li>
+<li><strong>Proxy</strong> - What allows us to funnel traffic through Burp Suite for further analysis</li>
+<li><strong>Target</strong> - How we set the scope of our project. We can also use this to effectively create a site map of the application we are testing.</li>
+<li><strong>Intruder</strong> - Incredibly powerful tool for everything from field fuzzing to credential stuffing and more</li>
+<li><strong>Repeater</strong> - Allows us to ‘repeat’ requests that have previously been made with or without modification. Often used in a precursor step to fuzzing with the aforementioned Intruder</li>
+<li><strong>Sequencer</strong> - Analyzes the ‘randomness’ present in parts of the web app which are intended to be unpredictable. This is commonly used for testing session cookies</li>
+<li><strong>Decoder</strong> - As the name suggests, Decoder is a tool that allows us to perform various transforms on pieces of data. These transforms vary from decoding/encoding to various bases or URL encoding.</li>
+<li><strong>Comparer</strong> - Comparer as you might have guessed is a tool we can use to compare different responses or other pieces of data such as site maps or proxy histories (awesome for access control issue testing). This is very similar to the Linux tool diff.</li>
+<li><strong>Extender</strong> - Similar to adding mods to a game like Minecraft, Extender allows us to add components such as tool integrations, additional scan definitions, and more!</li>
+<li><strong>Scanner</strong> - Automated web vulnerability scanner that can highlight areas of the application for further manual investigation or possible exploitation with another section of Burp. This feature, while not in the community edition of Burp Suite, is still a key facet of performing a web application test.</li>
+</ul>
+<h2 id="Proxy-and-Target-Definition"><a href="#Proxy-and-Target-Definition" class="headerlink" title="Proxy and Target Definition"></a>Proxy and Target Definition</h2><ul>
+<li>Proxy section里可以打开intercept，打开intercept后会intercept所有浏览器浏览的页面</li>
+<li>Ctrl+R发当前intercept的报文给Repeater</li>
+<li>Ctrl+I发当前intercept的报文给Intruder</li>
+<li>为避免intercept大量冗余无用页面，在Options里通过And条件只intercept target scope里的页面即可，target section里可以设置scope</li>
+<li>设置完scope之后，只有scope里的页面才会被intercept，并出现在http history里，而且就算你后面关闭了intercept，http history依然会更新</li>
+</ul>
+<h2 id="Puttin’-it-on-Repeat-er"><a href="#Puttin’-it-on-Repeat-er" class="headerlink" title="Puttin’ it on Repeat[er]"></a>Puttin’ it on Repeat[er]</h2><ul>
+<li>In contrast to Intruder, Repeater is typically used for the purposes of experimentation or more fine-tuned exploitation wherein automation may not be desired. 可能就相当于之前我在charles里面用compose或者设断点去看了</li>
+<li>就直接去history里找到你要实验的页面然后send to repeater改包发包即可</li>
+</ul>
+<h2 id="Help-There’s-an-Intruder"><a href="#Help-There’s-an-Intruder" class="headerlink" title="Help! There’s an Intruder!"></a>Help! There’s an Intruder!</h2><ul>
+<li><p>Arguably the most powerful tool in Burp Suite, Intruder can be used for many things ranging from fuzzing to brute-forcing. At its core, Intruder serves one purpose: automation. </p>
+</li>
+<li><p>攻击方式</p>
+<ol>
+<li><p><em>Sniper</em> - The most popular attack type, this cycles through our selected positions, putting the next available payload (item from our wordlist) in each position in turn. This uses only one set of payloads (one wordlist).</p>
+<p>用一个字典对一个field进行暴破</p>
+</li>
+<li><p><em>Battering Ram</em> - Similar to Sniper, Battering Ram uses only one set of payloads. Unlike Sniper, Battering Ram puts every payload into every selected position. Think about how a battering ram makes contact across a large surface with a single surface, hence the name battering ram for this attack type.</p>
+<p>用一个字典对多个fileds爆破</p>
+</li>
+<li><p><em>Pitchfork</em> - The Pitchfork attack type allows us to use multiple payload sets (one per position selected) and iterate through both payload sets <em>simultaneously</em>. For example, if we selected two positions (say a username field and a password field), we can provide a username and password payload list. Intruder will then cycle through the combinations of usernames and passwords, resulting in a total number of combinations equalling the smallest payload set provided. </p>
+</li>
+<li><p><em>Cluster Bomb</em> - The Cluster Bomb attack type allows us to use multiple payload sets (one per position selected) and iterate through all combinations of the payload lists we provide. For example, if we selected two positions (say a username field and a password field), we can provide a username and password payload list. Intruder will then cycle through the combinations of usernames and passwords, resulting in a total number of combinations equalling usernames x passwords. <em>Do note, this can get pretty lengthy if you are using the community edition of Burp.</em> </p>
+<p>例如两个字典对两个fields的组合爆破</p>
+</li>
+</ol>
+</li>
+<li><p>对登录用户名的爆破：</p>
+<p>首先找到登录报文放到intruder，然后到Positions用$$选中要fuzzing的field，选sniper模式，再到Payloads load我们的字典start attack</p>
+</li>
+</ul>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
       
 
       
@@ -193,7 +244,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">TryHackMe</a>
         		</li>
       		
 		</ul>
@@ -249,7 +300,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/01/11/Simple-Split-Sausages-Problem/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/01/15/BurpSuite/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -263,18 +314,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/01/12/HTTPS%E7%9A%84%E5%A4%8D%E4%B9%A0%E4%B8%8E%E5%86%8D%E7%90%86%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          HTTPS的复习与再理解
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/01/11/Review-O-n-2-sortings/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Review O(n^2) sortings</div>
+    <a href="/2021/01/15/Vulnversity/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Vulnversity</div>
       <i class="icon-circle-right"></i>
     </a>
   

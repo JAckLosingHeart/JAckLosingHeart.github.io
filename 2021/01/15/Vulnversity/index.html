@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Simple Split Sausages Problem | JAckLosingHeart</title>
+  <title>Vulnversity | JAckLosingHeart</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="123456789101112131415161718192021222324252627import java.util.HashMap;import java.util.Map;class Solution &amp;#123;    Map&lt;Integer, Integer&gt; map &#x3D; new HashMap&lt;&gt;();    int splitSausage(int k)">
+  <meta name="description" content="Reconnaissance Nmap  What version of the squid proxy is running on the machine? nmap -sV  10.10.115.156可以查看各种服务的版本  nmap -p-n 10.10.115.156就会扫描n个端口  nmap -A 10.10.115.156 aggressive  nmap -O 10.10.115">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Simple Split Sausages Problem">
-<meta property="og:url" content="http://example.com/2021/01/11/Simple-Split-Sausages-Problem/index.html">
+<meta property="og:title" content="Vulnversity">
+<meta property="og:url" content="http://example.com/2021/01/15/Vulnversity/index.html">
 <meta property="og:site_name" content="JAckLosingHeart">
-<meta property="og:description" content="123456789101112131415161718192021222324252627import java.util.HashMap;import java.util.Map;class Solution &amp;#123;    Map&lt;Integer, Integer&gt; map &#x3D; new HashMap&lt;&gt;();    int splitSausage(int k)">
+<meta property="og:description" content="Reconnaissance Nmap  What version of the squid proxy is running on the machine? nmap -sV  10.10.115.156可以查看各种服务的版本  nmap -p-n 10.10.115.156就会扫描n个端口  nmap -A 10.10.115.156 aggressive  nmap -O 10.10.115">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-01-12T00:44:53.000Z">
-<meta property="article:modified_time" content="2021-01-12T03:19:56.094Z">
+<meta property="article:published_time" content="2021-01-15T16:10:59.000Z">
+<meta property="article:modified_time" content="2021-01-15T16:42:57.386Z">
 <meta property="article:author" content="JAckLosingHeart">
-<meta property="article:tag" content="leetcode">
+<meta property="article:tag" content="TryHackMe">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="JAckLosingHeart" type="application/atom+xml">
@@ -136,29 +136,58 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Simple-Split-Sausages-Problem" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Vulnversity" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Simple Split Sausages Problem
+      Vulnversity
     </h1>
   
 
         
-        <a href="/2021/01/11/Simple-Split-Sausages-Problem/" class="archive-article-date">
-  	<time datetime="2021-01-12T00:44:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-11</time>
+        <a href="/2021/01/15/Vulnversity/" class="archive-article-date">
+  	<time datetime="2021-01-15T16:10:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-15</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">splitSausage</span><span class="params">(<span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        map.clear();</span><br><span class="line">        <span class="keyword">return</span> dp(k);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">dp</span><span class="params">(<span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (k &lt; <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (k &lt; <span class="number">4</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (map.containsKey(k))</span><br><span class="line">            <span class="keyword">return</span> map.get(k);</span><br><span class="line">        <span class="keyword">int</span> result = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= k-<span class="number">2</span>; i++) &#123;</span><br><span class="line">            result += dp(k-i);</span><br><span class="line">        &#125;</span><br><span class="line">        map.put(k, result);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span> <span class="params">(String args[])</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="keyword">new</span> Solution().dp(<span class="number">6</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+        <h2 id="Reconnaissance"><a href="#Reconnaissance" class="headerlink" title="Reconnaissance"></a>Reconnaissance</h2><ul>
+<li><p><strong>Nmap</strong></p>
+<ul>
+<li><p>What version of the squid proxy is running on the machine?</p>
+<p>nmap -sV  10.10.115.156可以查看各种服务的版本</p>
+</li>
+<li><p>nmap -p-n 10.10.115.156就会扫描n个端口</p>
+</li>
+<li><p>nmap -A 10.10.115.156 aggressive</p>
+</li>
+<li><p>nmap -O 10.10.115.156 enable OS detection</p>
+</li>
+<li><p>nmap常常检测出的服务版本中也有对系统的描述，由此也可以知道操作系统信息</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Locating-directories-using-GoBuster"><a href="#Locating-directories-using-GoBuster" class="headerlink" title="Locating directories using GoBuster"></a>Locating directories using GoBuster</h2><ul>
+<li><p><strong>GoBuster</strong> </p>
+<ul>
+<li><p>A fast directory discovery tool. 类似于之前我用过的DirBuster</p>
+<p>GoBuster is a tool used to brute-force URIs (directories and files), DNS subdomains and virtual host names.</p>
+</li>
+<li><p>gobuster dir -u <a target="_blank" rel="noopener" href="http://10.10.115.156:3333/">http://10.10.115.156:3333</a> -w /usr/share/wordlists/dirbuster/director-list-1.0.txt</p>
+<p>-u target_url -w wordlist</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Compromise-the-webserver"><a href="#Compromise-the-webserver" class="headerlink" title="Compromise the webserver"></a>Compromise the webserver</h2><ul>
+<li><h2 id="BurpSuite"><a href="#BurpSuite" class="headerlink" title="BurpSuite"></a>BurpSuite</h2></li>
+</ul>
 
       
 
@@ -193,7 +222,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">TryHackMe</a>
         		</li>
       		
 		</ul>
@@ -249,7 +278,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/01/11/Simple-Split-Sausages-Problem/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/01/15/Vulnversity/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -263,18 +292,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/01/12/HTTPS%E7%9A%84%E5%A4%8D%E4%B9%A0%E4%B8%8E%E5%86%8D%E7%90%86%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/01/15/BurpSuite/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          HTTPS的复习与再理解
+          BurpSuite
         
       </div>
     </a>
   
   
-    <a href="/2021/01/11/Review-O-n-2-sortings/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Review O(n^2) sortings</div>
+    <a href="/2021/01/13/PicoCTF2018-Binary-Exploitation/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">PicoCTF2018 Binary Exploitation</div>
       <i class="icon-circle-right"></i>
     </a>
   

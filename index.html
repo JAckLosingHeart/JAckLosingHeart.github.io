@@ -133,6 +133,238 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-BurpSuite" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/15/BurpSuite/">BurpSuite</a>
+    </h1>
+  
+
+        
+        <a href="/2021/01/15/BurpSuite/" class="archive-article-date">
+  	<time datetime="2021-01-15T16:45:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Gettin’-CA-Certified"><a href="#Gettin’-CA-Certified" class="headerlink" title="Gettin’ [CA] Certified"></a>Gettin’ [CA] Certified</h2><ul>
+<li><p>tm我才知道不是professional连store和load记录文件都不行</p>
+<p>可能之前都用的破解版把</p>
+</li>
+<li><p>BurpSuite在打开后，默认使用8080端口proxy，如果以后用firefox渗透的话，就直接从localhost:8080下载证书安装到firefox的Certificates即可</p>
+</li>
+<li><p>FoxyProxy是另一个好用的proxy管理插件，跟原来用过的ProxySwitcher差不太多</p>
+</li>
+</ul>
+<h2 id="Overview-of-Features"><a href="#Overview-of-Features" class="headerlink" title="Overview of Features"></a>Overview of Features</h2><ul>
+<li>Now that we’ve set up Burp, let’s take a look at everything it has to offer. Web application pentesting can be a messy affair but Burp has something for every step of the way. </li>
+<li><strong>Proxy</strong> - What allows us to funnel traffic through Burp Suite for further analysis</li>
+<li><strong>Target</strong> - How we set the scope of our project. We can also use this to effectively create a site map of the application we are testing.</li>
+<li><strong>Intruder</strong> - Incredibly powerful tool for everything from field fuzzing to credential stuffing and more</li>
+<li><strong>Repeater</strong> - Allows us to ‘repeat’ requests that have previously been made with or without modification. Often used in a precursor step to fuzzing with the aforementioned Intruder</li>
+<li><strong>Sequencer</strong> - Analyzes the ‘randomness’ present in parts of the web app which are intended to be unpredictable. This is commonly used for testing session cookies</li>
+<li><strong>Decoder</strong> - As the name suggests, Decoder is a tool that allows us to perform various transforms on pieces of data. These transforms vary from decoding/encoding to various bases or URL encoding.</li>
+<li><strong>Comparer</strong> - Comparer as you might have guessed is a tool we can use to compare different responses or other pieces of data such as site maps or proxy histories (awesome for access control issue testing). This is very similar to the Linux tool diff.</li>
+<li><strong>Extender</strong> - Similar to adding mods to a game like Minecraft, Extender allows us to add components such as tool integrations, additional scan definitions, and more!</li>
+<li><strong>Scanner</strong> - Automated web vulnerability scanner that can highlight areas of the application for further manual investigation or possible exploitation with another section of Burp. This feature, while not in the community edition of Burp Suite, is still a key facet of performing a web application test.</li>
+</ul>
+<h2 id="Proxy-and-Target-Definition"><a href="#Proxy-and-Target-Definition" class="headerlink" title="Proxy and Target Definition"></a>Proxy and Target Definition</h2><ul>
+<li>Proxy section里可以打开intercept，打开intercept后会intercept所有浏览器浏览的页面</li>
+<li>Ctrl+R发当前intercept的报文给Repeater</li>
+<li>Ctrl+I发当前intercept的报文给Intruder</li>
+<li>为避免intercept大量冗余无用页面，在Options里通过And条件只intercept target scope里的页面即可，target section里可以设置scope</li>
+<li>设置完scope之后，只有scope里的页面才会被intercept，并出现在http history里，而且就算你后面关闭了intercept，http history依然会更新</li>
+</ul>
+<h2 id="Puttin’-it-on-Repeat-er"><a href="#Puttin’-it-on-Repeat-er" class="headerlink" title="Puttin’ it on Repeat[er]"></a>Puttin’ it on Repeat[er]</h2><ul>
+<li>In contrast to Intruder, Repeater is typically used for the purposes of experimentation or more fine-tuned exploitation wherein automation may not be desired. 可能就相当于之前我在charles里面用compose或者设断点去看了</li>
+<li>就直接去history里找到你要实验的页面然后send to repeater改包发包即可</li>
+</ul>
+<h2 id="Help-There’s-an-Intruder"><a href="#Help-There’s-an-Intruder" class="headerlink" title="Help! There’s an Intruder!"></a>Help! There’s an Intruder!</h2><ul>
+<li><p>Arguably the most powerful tool in Burp Suite, Intruder can be used for many things ranging from fuzzing to brute-forcing. At its core, Intruder serves one purpose: automation. </p>
+</li>
+<li><p>攻击方式</p>
+<ol>
+<li><p><em>Sniper</em> - The most popular attack type, this cycles through our selected positions, putting the next available payload (item from our wordlist) in each position in turn. This uses only one set of payloads (one wordlist).</p>
+<p>用一个字典对一个field进行暴破</p>
+</li>
+<li><p><em>Battering Ram</em> - Similar to Sniper, Battering Ram uses only one set of payloads. Unlike Sniper, Battering Ram puts every payload into every selected position. Think about how a battering ram makes contact across a large surface with a single surface, hence the name battering ram for this attack type.</p>
+<p>用一个字典对多个fileds爆破</p>
+</li>
+<li><p><em>Pitchfork</em> - The Pitchfork attack type allows us to use multiple payload sets (one per position selected) and iterate through both payload sets <em>simultaneously</em>. For example, if we selected two positions (say a username field and a password field), we can provide a username and password payload list. Intruder will then cycle through the combinations of usernames and passwords, resulting in a total number of combinations equalling the smallest payload set provided. </p>
+</li>
+<li><p><em>Cluster Bomb</em> - The Cluster Bomb attack type allows us to use multiple payload sets (one per position selected) and iterate through all combinations of the payload lists we provide. For example, if we selected two positions (say a username field and a password field), we can provide a username and password payload list. Intruder will then cycle through the combinations of usernames and passwords, resulting in a total number of combinations equalling usernames x passwords. <em>Do note, this can get pretty lengthy if you are using the community edition of Burp.</em> </p>
+<p>例如两个字典对两个fields的组合爆破</p>
+</li>
+</ol>
+</li>
+<li><p>对登录用户名的爆破：</p>
+<p>首先找到登录报文放到intruder，然后到Positions用$$选中要fuzzing的field，选sniper模式，再到Payloads load我们的字典start attack</p>
+</li>
+</ul>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">TryHackMe</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/01/15/BurpSuite/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Vulnversity" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/15/Vulnversity/">Vulnversity</a>
+    </h1>
+  
+
+        
+        <a href="/2021/01/15/Vulnversity/" class="archive-article-date">
+  	<time datetime="2021-01-15T16:10:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Reconnaissance"><a href="#Reconnaissance" class="headerlink" title="Reconnaissance"></a>Reconnaissance</h2><ul>
+<li><p><strong>Nmap</strong></p>
+<ul>
+<li><p>What version of the squid proxy is running on the machine?</p>
+<p>nmap -sV  10.10.115.156可以查看各种服务的版本</p>
+</li>
+<li><p>nmap -p-n 10.10.115.156就会扫描n个端口</p>
+</li>
+<li><p>nmap -A 10.10.115.156 aggressive</p>
+</li>
+<li><p>nmap -O 10.10.115.156 enable OS detection</p>
+</li>
+<li><p>nmap常常检测出的服务版本中也有对系统的描述，由此也可以知道操作系统信息</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Locating-directories-using-GoBuster"><a href="#Locating-directories-using-GoBuster" class="headerlink" title="Locating directories using GoBuster"></a>Locating directories using GoBuster</h2><ul>
+<li><p><strong>GoBuster</strong> </p>
+<ul>
+<li><p>A fast directory discovery tool. 类似于之前我用过的DirBuster</p>
+<p>GoBuster is a tool used to brute-force URIs (directories and files), DNS subdomains and virtual host names.</p>
+</li>
+<li><p>gobuster dir -u <a target="_blank" rel="noopener" href="http://10.10.115.156:3333/">http://10.10.115.156:3333</a> -w /usr/share/wordlists/dirbuster/director-list-1.0.txt</p>
+<p>-u target_url -w wordlist</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Compromise-the-webserver"><a href="#Compromise-the-webserver" class="headerlink" title="Compromise the webserver"></a>Compromise the webserver</h2><ul>
+<li><h2 id="BurpSuite"><a href="#BurpSuite" class="headerlink" title="BurpSuite"></a>BurpSuite</h2></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">TryHackMe</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/01/15/Vulnversity/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-PicoCTF2018-Binary-Exploitation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -795,88 +1027,10 @@
 
 
   
-    <article id="post-Array" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/01/08/Array/">Array</a>
-    </h1>
-  
-
-        
-        <a href="/2021/01/08/Array/" class="archive-article-date">
-  	<time datetime="2021-01-08T20:58:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>当算法本身只能暴力算法的时候，便可以考虑从数据结构上下手提高效率，比如改用hashmap提高查询效率。</li>
-<li>几乎任何类型的数组都可以用Arrays.sort()来直接排序，它会帮你按照你定义的大小关系从小到大重新排列这个数组。第一个参数传入你的数组，第二个参数可以直接传入一个lamda表达式（匿名内部类）：(a, b) -&gt; 你要return的东西。重要的是记住a &lt; b的时候return一个负数，这算是默认大家遵守的规范？</li>
-<li>Arrays.asList(a, b, c)可以直接返回一个由a, b, c构成的list</li>
-<li>380 Insert Delete GetRandom O(1) 确是道好题，通过把ArrayList和Hashmap结合得到了最终解决方案。Hashmap帮助ArrayList解决了remove时搜索和移位都是O(n)的问题，而ArrayList则帮助Hashmap解决了getRandom需要index的问题</li>
-<li>Random类可以用nextInt(n)取随机数, The method call returns a pseudorandom, uniformly distributed int value between 0 (inclusive) and n (exclusive).</li>
-<li>我才知道的非常重要的一件事：list remove函数传入立即数或者int型变量，会按照传入值是index删除，传如Object的子类才会按照值删除，而且只会删除第一个出现的值</li>
-<li>map remove当然remove的是key</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/01/08/Array/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    </nav>
   
 
 
@@ -966,11 +1120,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
+                <a href="javascript:void(0)" class="js-tag color5">TryHackMe</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Review</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
               </li>
              
               <li class="article-tag-list-item">
