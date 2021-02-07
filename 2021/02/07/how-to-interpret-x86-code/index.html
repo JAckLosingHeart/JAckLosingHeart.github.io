@@ -15,15 +15,15 @@
 <meta property="og:site_name" content="JAckLosingHeart">
 <meta property="og:description" content="How to interpret x86 code For one-byte opcodes, first check the one-byte opcode map:    After finding the opcode you want, check if the operation needs operands. If it doesn’t need any operand, the in">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="c:/Users/60182/Documents/hexo/themes/yilia/source/img/opcode-map1.png">
-<meta property="og:image" content="c:/Users/60182/Documents/hexo/themes/yilia/source/img/opcode-map2.png">
-<meta property="og:image" content="c:/Users/60182/Documents/hexo/themes/yilia/source/img/ModR,M.png">
+<meta property="og:image" content="http://example.com/img/opcode-map1.png">
+<meta property="og:image" content="http://example.com/img/opcode-map2.png">
+<meta property="og:image" content="http://example.com/img/ModR,M.png">
 <meta property="article:published_time" content="2021-02-07T20:15:38.000Z">
-<meta property="article:modified_time" content="2021-02-07T20:41:22.771Z">
+<meta property="article:modified_time" content="2021-02-07T20:44:52.771Z">
 <meta property="article:author" content="JAckLosingHeart">
 <meta property="article:tag" content="Reverse Engineering">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="c:/Users/60182/Documents/hexo/themes/yilia/source/img/opcode-map1.png">
+<meta name="twitter:image" content="http://example.com/img/opcode-map1.png">
   
     <link rel="alternative" href="/atom.xml" title="JAckLosingHeart" type="application/atom+xml">
   
@@ -162,16 +162,16 @@
       
         <h2 id="How-to-interpret-x86-code"><a href="#How-to-interpret-x86-code" class="headerlink" title="How to interpret x86 code"></a>How to interpret x86 code</h2><ol>
 <li><p>For one-byte opcodes, first check the one-byte opcode map:</p>
-<p><img src="C:\Users\60182\Documents\hexo\themes\yilia\source\img\opcode-map1.png" alt="image-20210207151757754"></p>
-<p><img src="C:\Users\60182\Documents\hexo\themes\yilia\source\img\opcode-map2.png" alt="image-20210207151932621"></p>
+<p><img src="/img/opcode-map1.png" alt="image-20210207151757754"></p>
+<p><img src="/img/opcode-map2.png" alt="image-20210207151932621"></p>
 </li>
 <li><p>After finding the opcode you want, check if the operation needs operands.</p>
 <p>If it doesn’t need any operand, the interpretation is completed and we’ve already get the correct meaning of the opcode.</p>
 <p>If it does need operands (the operands can be something stored in memory and registers), check the (3,4,5) bits in ModR/M Byte is a opcode extension or register representation. If it represents a register, check the following table to find out what else is going on there and finally can interpret the whole meaning (may use SIB byte to do complicated memory access) </p>
-<p><img src="C:\Users\60182\Documents\hexo\themes\yilia\source\img\ModR,M.png" alt="image-20210207152534317"></p>
+<p><img src="/img/ModR,M.png" alt="image-20210207152534317"></p>
 <p>If (3,4,5) bits is a opcode extension, look up this table (incomplete version):</p>
 <p>In this case, (bits 2,1,0) can represent a register.</p>
-<p>![image-20210207153845400](C:\Users\60182\Documents\hexo\themes\yilia\source\img\Opcode Extension Table.png)</p>
+<p>![image-20210207153845400](/img/Opcode Extension Table.png)</p>
 </li>
 </ol>
 
@@ -398,15 +398,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">TryHackMe</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Research</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">TryHackMe</a>
               </li>
              
               <li class="article-tag-list-item">
