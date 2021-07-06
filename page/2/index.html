@@ -133,6 +133,182 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-TCP再放送" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/12/TCP%E5%86%8D%E6%94%BE%E9%80%81/">TCP再放送</a>
+    </h1>
+  
+
+        
+        <a href="/2021/01/12/TCP%E5%86%8D%E6%94%BE%E9%80%81/" class="archive-article-date">
+  	<time datetime="2021-01-13T01:38:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="TCP三次握手和四次挥手"><a href="#TCP三次握手和四次挥手" class="headerlink" title="TCP三次握手和四次挥手"></a>TCP三次握手和四次挥手</h2><ul>
+<li><p>TCP三次握手更像是同步的，TCP四次挥手更像是异步的</p>
+</li>
+<li><p>TCP三次握手：<br><img src="/img/TCP-Start-Handshake.png" alt="TCP-Start-Handshake.png"></p>
+</li>
+<li><p>TCP四次挥手：<br><img src="/img/TCP-End-Handshake.png" alt="TCP-End-Handshake.png"></p>
+</li>
+</ul>
+        
+          <a class="article-more-a" href="/2021/01/12/TCP%E5%86%8D%E6%94%BE%E9%80%81/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Review</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/01/12/TCP%E5%86%8D%E6%94%BE%E9%80%81/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-HTTPS的复习与再理解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/12/HTTPS%E7%9A%84%E5%A4%8D%E4%B9%A0%E4%B8%8E%E5%86%8D%E7%90%86%E8%A7%A3/">HTTPS的复习与再理解</a>
+    </h1>
+  
+
+        
+        <a href="/2021/01/12/HTTPS%E7%9A%84%E5%A4%8D%E4%B9%A0%E4%B8%8E%E5%86%8D%E7%90%86%E8%A7%A3/" class="archive-article-date">
+  	<time datetime="2021-01-12T19:46:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="对称加密和公钥加密的优缺点再放送"><a href="#对称加密和公钥加密的优缺点再放送" class="headerlink" title="对称加密和公钥加密的优缺点再放送"></a>对称加密和公钥加密的优缺点再放送</h2><ul>
+<li><p>对称加密</p>
+<ul>
+<li><p>优点：计算量小效率高，加密信息的主要内容常常用对称加密</p>
+</li>
+<li><p>缺点：首先没有非对称加密安全，双方使用同一密钥就需要密钥交换，而密钥交换便需要其它的机制来帮助。在HTTPS密钥交换过程中，我们常用RSA handshake和Diffie Hellman handshake两种方式来完成密钥交换。</p>
+<p>还有就是，因为每两者之间都需要一个对称密钥，所以就导致你如果与多方通信，就需要管理许多这样的密钥</p>
+</li>
+</ul>
+</li>
+<li><p>非对称加密</p>
+</li>
+<li><p>优点：更加安全（不需要密钥交换，把私钥藏好即可），只需要管理自己的公私钥即可</p>
+<ul>
+<li>缺点：例如RSA计算量大，加解密效率低，适用于加密短文本（如给摘要签名authentication，对称加密密钥交换时使用公私钥加密）</li>
+</ul>
+</li>
+</ul>
+        
+          <a class="article-more-a" href="/2021/01/12/HTTPS%E7%9A%84%E5%A4%8D%E4%B9%A0%E4%B8%8E%E5%86%8D%E7%90%86%E8%A7%A3/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Review</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/01/12/HTTPS%E7%9A%84%E5%A4%8D%E4%B9%A0%E4%B8%8E%E5%86%8D%E7%90%86%E8%A7%A3/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Simple-Split-Sausages-Problem" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -714,11 +890,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Research</a>
+                <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
+                <a href="javascript:void(0)" class="js-tag color4">Research</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -734,11 +910,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MISC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Security Test</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">misc</a>
               </li>
              
               <li class="article-tag-list-item">
