@@ -133,6 +133,111 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Vulnversity" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/15/Vulnversity/">Vulnversity</a>
+    </h1>
+  
+
+        
+        <a href="/2021/01/15/Vulnversity/" class="archive-article-date">
+  	<time datetime="2021-01-15T16:10:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Reconnaissance"><a href="#Reconnaissance" class="headerlink" title="Reconnaissance"></a>Reconnaissance</h2><ul>
+<li><p><strong>Nmap</strong></p>
+<ul>
+<li><p>What version of the squid proxy is running on the machine?</p>
+<p>nmap -sV  10.10.115.156可以查看各种服务的版本</p>
+</li>
+<li><p>nmap -p-n 10.10.115.156就会扫描n个端口</p>
+</li>
+<li><p>nmap -A 10.10.115.156 aggressive</p>
+</li>
+<li><p>nmap -O 10.10.115.156 enable OS detection</p>
+</li>
+<li><p>nmap常常检测出的服务版本中也有对系统的描述，由此也可以知道操作系统信息</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Locating-directories-using-GoBuster"><a href="#Locating-directories-using-GoBuster" class="headerlink" title="Locating directories using GoBuster"></a>Locating directories using GoBuster</h2><ul>
+<li><p><strong>GoBuster</strong> </p>
+<ul>
+<li><p>A fast directory discovery tool. 类似于之前我用过的DirBuster</p>
+<p>GoBuster is a tool used to brute-force URIs (directories and files), DNS subdomains and virtual host names.</p>
+</li>
+<li><p>gobuster dir -u <a target="_blank" rel="noopener" href="http://10.10.115.156:3333/">http://10.10.115.156:3333</a> -w /usr/share/wordlists/dirbuster/director-list-1.0.txt</p>
+<p>-u target_url -w wordlist</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Compromise-the-webserver"><a href="#Compromise-the-webserver" class="headerlink" title="Compromise the webserver"></a>Compromise the webserver</h2><ul>
+<li><h2 id="BurpSuite"><a href="#BurpSuite" class="headerlink" title="BurpSuite"></a>BurpSuite</h2></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">TryHackMe</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/01/15/Vulnversity/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-PicoCTF2018-Binary-Exploitation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
