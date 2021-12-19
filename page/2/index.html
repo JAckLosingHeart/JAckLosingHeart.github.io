@@ -133,6 +133,93 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-how-to-interpret-x86-code" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/02/07/how-to-interpret-x86-code/">how to interpret x86 code</a>
+    </h1>
+  
+
+        
+        <a href="/2021/02/07/how-to-interpret-x86-code/" class="archive-article-date">
+  	<time datetime="2021-02-07T23:15:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="How-to-interpret-x86-code"><a href="#How-to-interpret-x86-code" class="headerlink" title="How to interpret x86 code"></a>How to interpret x86 code</h2><ol>
+<li><p>For one-byte opcodes, first check the one-byte opcode map:</p>
+<p><img src="/img/opcode-map1.png" alt="image-20210207151757754"></p>
+<p><img src="/img/opcode-map2.png" alt="image-20210207151932621"></p>
+</li>
+<li><p>After finding the opcode you want, check if the operation needs operands.</p>
+<p>If it doesn’t need any operand, the interpretation is completed and we’ve already get the correct meaning of the opcode.</p>
+<p>If it does need operands (the operands can be something stored in memory and registers), check the (3,4,5) bits in ModR/M Byte is a opcode extension or register representation. If it represents a register, check the following table to find out what else is going on there and finally can interpret the whole meaning (may use SIB byte to do complicated memory access) </p>
+<p><img src="/img/ModR,M.png" alt="image-20210207152534317"></p>
+<p>If (3,4,5) bits is a opcode extension, look up this table (incomplete version):</p>
+<p>In this case, (bits 2,1,0) can represent a register.</p>
+<p><img src="/img/Opcode-Extension-Table.png" alt="image-20210207153845400"></p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Reverse Engineering</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/02/07/how-to-interpret-x86-code/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-BurpSuite" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -908,82 +995,6 @@
 
 
   
-    <article id="post-Apollo5-0-AttackAPI" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/01/08/Apollo5-0-AttackAPI/">Apollo5.0-AttackAPI</a>
-    </h1>
-  
-
-        
-        <a href="/2021/01/08/Apollo5-0-AttackAPI/" class="archive-article-date">
-  	<time datetime="2021-01-09T00:59:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-软硬件要求"><a href="#1-软硬件要求" class="headerlink" title="1 软硬件要求"></a>1 软硬件要求</h2><p>Linux操作系统，最好是Ubuntu14.04版本及以上。<br>Nivida显卡（为了支持Apollo5.0中的Perception模块）。必须安装Nvidia专有驱动程序，但要注意当前版本的Apollo不支持Volta和Turing架构（包括Titan V和RTX 2080 GPU）。</p>
-        
-          <a class="article-more-a" href="/2021/01/08/Apollo5-0-AttackAPI/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Research</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/01/08/Apollo5-0-AttackAPI/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next</a>
@@ -1085,11 +1096,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Review</a>
+                <a href="javascript:void(0)" class="js-tag color5">Reverse Engineering</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Reverse Engineering</a>
+                <a href="javascript:void(0)" class="js-tag color2">Review</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1102,6 +1113,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">CTF context</a>
               </li>
              
               <li class="article-tag-list-item">
