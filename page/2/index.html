@@ -133,6 +133,90 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Computer-Networks" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/03/Computer-Networks/">Computer Networks</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/03/Computer-Networks/" class="archive-article-date">
+  	<time datetime="2021-03-03T21:55:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Computer-Networks-Important-Concepts-Review"><a href="#Computer-Networks-Important-Concepts-Review" class="headerlink" title="Computer Networks Important Concepts Review"></a>Computer Networks Important Concepts Review</h2><ul>
+<li><p>Why UDP not TCP?</p>
+<p>Sometimes we think like video streaming, DNS, etc, those things use UDP because they don’t need reliability provided by TCP and pursue a better efficiency. But thinking like this way is not correct. Actually those benefits are just kind of bonus, not the real reason. The real reason is that, essentially they can’t use TCP. TCP requires retransmission, but the real-time systems can’t do retransmission when failures occur and they just ignore that. For another example explaining why sometimes we can’t use TCP, DNS also has a mechanism for retransmission, where it’s not TCP version of retransmission, but a traversing of other possible DNS servers.</p>
+</li>
+<li><p>UDP Checksum Clarification</p>
+<p>UDP segment will be immediately dropped at the transport layer if the checksum is incorrect. It’s not dropped at the application layer, but the application can somehow know there are segments dropped depending on specific implementations.  </p>
+</li>
+<li><p>Link layer, transport layer and reliability</p>
+<p>Link layer guarantees node-to-node reliability. Transport layer guarantees end-to-end reliability.</p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Review</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/03/Computer-Networks/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-how-to-interpret-x86-code" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -919,82 +1003,6 @@
 
 
   
-    <article id="post-Security-Test-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/01/09/Security-Test-1/">Security Test 1</a>
-    </h1>
-  
-
-        
-        <a href="/2021/01/09/Security-Test-1/" class="archive-article-date">
-  	<time datetime="2021-01-09T17:38:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="奇安信春招笔试"><a href="#奇安信春招笔试" class="headerlink" title="奇安信春招笔试"></a>奇安信春招笔试</h2>
-        
-          <a class="article-more-a" href="/2021/01/09/Security-Test-1/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Security Test</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/01/09/Security-Test-1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next</a>
@@ -1096,11 +1104,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Reverse Engineering</a>
+                <a href="javascript:void(0)" class="js-tag color2">Review</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Review</a>
+                <a href="javascript:void(0)" class="js-tag color5">Reverse Engineering</a>
               </li>
              
               <li class="article-tag-list-item">
